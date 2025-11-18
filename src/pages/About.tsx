@@ -2,16 +2,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { Target, Eye, Award, Shield } from "lucide-react";
+import { Target, Eye, Award, Shield, Recycle, Zap } from "lucide-react";
+import logo from "@/assets/brilliant-epoxy-logo.png";
 
 const About = () => {
   const { t } = useLanguage();
 
   const values = [
-    { icon: Award, text: t('about.values.quality') },
-    { icon: Target, text: t('about.values.innovation') },
+    { icon: Recycle, text: t('about.values.quality') },
+    { icon: Zap, text: t('about.values.innovation') },
     { icon: Shield, text: t('about.values.commitment') },
-    { icon: Shield, text: t('about.values.safety') },
+    { icon: Target, text: t('about.values.safety') },
   ];
 
   return (
@@ -21,6 +22,9 @@ const About = () => {
       <main className="flex-grow pt-24 pb-12">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
+            <div className="mb-6 flex justify-center">
+              <img src={logo} alt="Brilliant Epoxy Logo" className="h-20 md:h-24 object-contain" />
+            </div>
             <h1 className="text-5xl font-bold mb-4 text-foreground">
               {t('about.title')}
             </h1>
