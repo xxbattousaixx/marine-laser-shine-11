@@ -18,7 +18,7 @@ const translations = {
     'nav.contact': 'Contacto',
     
     // Home
-    'home.hero.title': 'Brilliant Epoxy - Limpieza Láser Industrial',
+    'home.hero.title': 'Limpieza Láser Industrial',
     'home.hero.subtitle': 'Máquina láser de 6000W para preparación de superficies, remoción de óxido y limpieza industrial de alta potencia',
     'home.hero.cta': 'Solicitar Cotización',
     'home.hero.cta2': 'Ver Servicios',
@@ -35,9 +35,9 @@ const translations = {
     'home.power.desc': 'Equipo de alta potencia para aplicaciones industriales pesadas y proyectos de gran escala',
     
     // About
-    'about.title': 'Sobre Brilliant Epoxy',
+    'about.title': 'Sobre Nosotros',
     'about.subtitle': 'Proveedores especializados de servicios de limpieza láser industrial',
-    'about.intro': 'Brilliant Epoxy opera un sistema láser de limpieza de óxido de 6000W de alta potencia, ofreciendo servicios de preparación de superficies de nivel industrial para manufactura pesada, marítima, energía y sectores aeroespaciales. Nuestro equipo de Clase 4 maneja proyectos de gran escala donde el tiempo de inactividad del cliente es crítico.',
+    'about.intro': 'Operamos un sistema láser de limpieza de óxido de 6000W de alta potencia, ofreciendo servicios de preparación de superficies de nivel industrial para manufactura pesada, marítima, energía y sectores aeroespaciales. Nuestro equipo de Clase 4 maneja proyectos de gran escala donde el tiempo de inactividad del cliente es crítico.',
     'about.mission.title': 'Nuestra Tecnología',
     'about.mission.desc': 'Sistema láser de 6000W para aplicaciones industriales pesadas. Limpieza rápida de grandes áreas con cero daño al sustrato, sin medios abrasivos y sin residuos químicos. Operación remota para entornos peligrosos.',
     'about.vision.title': 'Modelo de Negocio',
@@ -92,7 +92,7 @@ const translations = {
     'nav.contact': 'Contact',
     
     // Home
-    'home.hero.title': 'Brilliant Epoxy - Industrial Laser Cleaning',
+    'home.hero.title': 'Industrial Laser Cleaning',
     'home.hero.subtitle': '6000W laser machine for surface preparation, rust removal, and high-power industrial cleaning',
     'home.hero.cta': 'Request Quote',
     'home.hero.cta2': 'View Services',
@@ -109,9 +109,9 @@ const translations = {
     'home.power.desc': 'High-power equipment for heavy-duty industrial applications and large-scale projects',
     
     // About
-    'about.title': 'About Brilliant Epoxy',
+    'about.title': 'About Us',
     'about.subtitle': 'Specialized industrial laser cleaning service providers',
-    'about.intro': 'Brilliant Epoxy operates a high-power 6000W rust cleaning laser system, offering industrial-grade surface preparation services for heavy manufacturing, maritime, energy, and aerospace sectors. Our Class 4 equipment handles large-scale projects where client downtime is critical.',
+    'about.intro': 'We operate a high-power 6000W rust cleaning laser system, offering industrial-grade surface preparation services for heavy manufacturing, maritime, energy, and aerospace sectors. Our Class 4 equipment handles large-scale projects where client downtime is critical.',
     'about.mission.title': 'Our Technology',
     'about.mission.desc': '6000W laser system for heavy-duty industrial applications. Fast cleaning of large areas with zero substrate damage, no abrasive media, and no chemical waste. Remote operation for hazardous environments.',
     'about.vision.title': 'Business Model',
