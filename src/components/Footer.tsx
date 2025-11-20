@@ -1,6 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { MapPin } from "lucide-react";
-import logo from "@/assets/laser-clean-logo.png";
+import logo from "@/assets/marine-laser-clean-logo.png";
 
 export const Footer = () => {
   const { t } = useLanguage();
@@ -11,7 +11,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
-            <img src={logo} alt="Laser Clean Logo" className="h-12 mb-2 object-contain mx-auto md:mx-0" />
+            <img src={logo} alt="Marine Laser Clean Logo" className="h-12 mb-2 object-contain mx-auto md:mx-0" />
             <div className="flex items-center gap-2 justify-center md:justify-start">
               <MapPin className="h-4 w-4" />
               <p className="text-sm">{t('footer.location')}</p>
@@ -19,7 +19,7 @@ export const Footer = () => {
           </div>
           
           <div className="text-center text-sm">
-            <p>© {currentYear} LaserClean. {t('footer.rights')}</p>
+            <p>© {currentYear} {t('footer.company')}. {t('footer.rights')}</p>
           </div>
         </div>
       </div>
