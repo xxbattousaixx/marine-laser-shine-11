@@ -71,9 +71,7 @@ export const Navigation = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="hidden md:block">
-              <ThemeToggle />
-            </div>
+            <ThemeToggle />
             
             <Button
               variant="outline"
@@ -93,6 +91,11 @@ export const Navigation = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-64">
                 <div className="flex flex-col gap-4 mt-8">
+                  <div className="flex items-center gap-2 pb-4 border-b border-border">
+                    <span className="text-sm text-muted-foreground">Theme:</span>
+                    <ThemeToggle />
+                  </div>
+                  
                   <NavLink 
                     to="/" 
                     onClick={() => setIsOpen(false)}
