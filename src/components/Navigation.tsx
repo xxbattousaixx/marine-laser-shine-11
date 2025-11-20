@@ -5,7 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { NavLink } from "@/components/NavLink";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "@/assets/laser-clean-logo.png";
+import logo from "@/assets/marine-laser-clean-logo.png";
 
 export const Navigation = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -28,7 +28,7 @@ export const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="Laser Clean Logo" className="h-10 object-contain" />
+            <img src={logo} alt="Marine Laser Clean Logo" className="h-10 object-contain" />
           </Link>
           
           <div className="hidden md:flex items-center gap-6">

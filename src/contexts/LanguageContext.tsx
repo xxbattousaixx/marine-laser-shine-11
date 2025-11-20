@@ -76,12 +76,13 @@ const translations = {
     'contact.send': 'Enviar Mensaje',
     'contact.info.title': 'Información de Contacto',
     'contact.info.location': 'Cabimas, Zulia, Venezuela',
-    'contact.info.phone': '+58 (XXX) XXX-XXXX',
-    'contact.info.email': 'info@limpiezalaser.com',
+    'contact.info.phone': '0412-324-3681',
+    'contact.info.email': 'marinelaserclean@gmail.com',
     
     // Footer
     'footer.rights': 'Todos los derechos reservados',
     'footer.location': 'Cabimas, Zulia, Venezuela',
+    'footer.company': 'Marine Laser Clean',
   },
   en: {
     // Navigation
@@ -150,12 +151,13 @@ const translations = {
     'contact.send': 'Send Message',
     'contact.info.title': 'Contact Information',
     'contact.info.location': 'Cabimas, Zulia, Venezuela',
-    'contact.info.phone': '+58 (XXX) XXX-XXXX',
-    'contact.info.email': 'info@limpiezalaser.com',
+    'contact.info.phone': '0412-324-3681',
+    'contact.info.email': 'marinelaserclean@gmail.com',
     
     // Footer
     'footer.rights': 'All rights reserved',
     'footer.location': 'Cabimas, Zulia, Venezuela',
+    'footer.company': 'Marine Laser Clean',
   },
   zh: {
     // Navigation
@@ -222,12 +224,13 @@ const translations = {
     'contact.send': '发送消息',
     'contact.info.title': '联系信息',
     'contact.info.location': '卡比马斯，苏利亚，委内瑞拉',
-    'contact.info.phone': '+58 (XXX) XXX-XXXX',
-    'contact.info.email': 'info@limpiezalaser.com',
+    'contact.info.phone': '0412-324-3681',
+    'contact.info.email': 'marinelaserclean@gmail.com',
     
     // Footer
     'footer.rights': '版权所有',
     'footer.location': '卡比马斯，苏利亚，委内瑞拉',
+    'footer.company': 'Marine Laser Clean',
   },
 };
 
