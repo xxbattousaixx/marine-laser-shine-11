@@ -3,6 +3,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Languages, Menu } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { NavLink } from "@/components/NavLink";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/marine-laser-clean-logo.png";
@@ -70,6 +71,10 @@ export const Navigation = () => {
           </div>
 
           <div className="flex items-center gap-2">
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
+            
             <Button
               variant="outline"
               size="sm"

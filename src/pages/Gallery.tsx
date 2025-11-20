@@ -9,6 +9,12 @@ import machineryBefore from "@/assets/gallery/machinery-before.jpg";
 import machineryAfter from "@/assets/gallery/machinery-after.jpg";
 import partsBefore from "@/assets/gallery/parts-before.jpg";
 import partsAfter from "@/assets/gallery/parts-after.jpg";
+import hullBefore from "@/assets/gallery/hull-before.jpg";
+import hullAfter from "@/assets/gallery/hull-after.jpg";
+import pipesBefore from "@/assets/gallery/pipes-before.jpg";
+import pipesAfter from "@/assets/gallery/pipes-after.jpg";
+import engineBefore from "@/assets/gallery/engine-before.jpg";
+import engineAfter from "@/assets/gallery/engine-after.jpg";
 
 const Gallery = () => {
   const { t } = useLanguage();
@@ -16,10 +22,16 @@ const Gallery = () => {
   const galleryItems = [
     { id: 1, image: shipBefore, label: t('gallery.before'), category: 'Ship Cabin' },
     { id: 2, image: shipAfter, label: t('gallery.after'), category: 'Ship Cabin' },
-    { id: 3, image: machineryBefore, label: t('gallery.before'), category: 'Machinery' },
-    { id: 4, image: machineryAfter, label: t('gallery.after'), category: 'Machinery' },
-    { id: 5, image: partsBefore, label: t('gallery.before'), category: 'Parts' },
-    { id: 6, image: partsAfter, label: t('gallery.after'), category: 'Parts' },
+    { id: 3, image: hullBefore, label: t('gallery.before'), category: 'Ship Hull' },
+    { id: 4, image: hullAfter, label: t('gallery.after'), category: 'Ship Hull' },
+    { id: 5, image: machineryBefore, label: t('gallery.before'), category: 'Machinery' },
+    { id: 6, image: machineryAfter, label: t('gallery.after'), category: 'Machinery' },
+    { id: 7, image: engineBefore, label: t('gallery.before'), category: 'Engine Parts' },
+    { id: 8, image: engineAfter, label: t('gallery.after'), category: 'Engine Parts' },
+    { id: 9, image: pipesBefore, label: t('gallery.before'), category: 'Industrial Pipes' },
+    { id: 10, image: pipesAfter, label: t('gallery.after'), category: 'Industrial Pipes' },
+    { id: 11, image: partsBefore, label: t('gallery.before'), category: 'Metal Parts' },
+    { id: 12, image: partsAfter, label: t('gallery.after'), category: 'Metal Parts' },
   ];
 
   return (
