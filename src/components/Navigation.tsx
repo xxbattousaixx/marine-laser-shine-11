@@ -62,6 +62,13 @@ export const Navigation = () => {
               {t('nav.gallery')}
             </NavLink>
             <NavLink 
+              to="/blog" 
+              className="text-foreground hover:text-primary transition-colors"
+              activeClassName="text-primary font-semibold"
+            >
+              {t('nav.blog')}
+            </NavLink>
+            <NavLink 
               to="/contact" 
               className="text-foreground hover:text-primary transition-colors"
               activeClassName="text-primary font-semibold"
@@ -127,6 +134,14 @@ export const Navigation = () => {
                     activeClassName="text-primary font-semibold"
                   >
                     {t('nav.gallery')}
+                  </NavLink>
+                  <NavLink 
+                    to="/blog" 
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg text-foreground hover:text-primary transition-colors py-2"
+                    activeClassName="text-primary font-semibold"
+                  >
+                    {t('nav.blog')}
                   </NavLink>
                   <NavLink 
                     to="/contact" 
