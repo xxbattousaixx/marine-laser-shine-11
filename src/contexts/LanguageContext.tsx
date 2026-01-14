@@ -77,7 +77,7 @@ const translations = {
     'contact.info.title': 'Información de Contacto',
     'contact.info.location': 'Cabimas, Zulia, Venezuela',
     'contact.info.phone': '0412-324-3681',
-    'contact.info.email': 'marinelaserclean@gmail.com',
+    'contact.info.email': 'lasercleanvz@proton.me',
     
     // Footer
     'footer.rights': 'Todos los derechos reservados',
@@ -191,7 +191,7 @@ const translations = {
     'contact.info.title': 'Contact Information',
     'contact.info.location': 'Cabimas, Zulia, Venezuela',
     'contact.info.phone': '0412-324-3681',
-    'contact.info.email': 'marinelaserclean@gmail.com',
+    'contact.info.email': 'lasercleanvz@proton.me',
     
     // Footer
     'footer.rights': 'All rights reserved',
@@ -303,7 +303,7 @@ const translations = {
     'contact.info.title': '联系信息',
     'contact.info.location': '卡比马斯，苏利亚，委内瑞拉',
     'contact.info.phone': '0412-324-3681',
-    'contact.info.email': 'marinelaserclean@gmail.com',
+    'contact.info.email': 'lasercleanvz@proton.me',
     
     // Footer
     'footer.rights': '版权所有',
