@@ -27,7 +27,7 @@ const blogPosts: BlogPost[] = [
     categoryKey: "blog.category.comparison",
     date: "2024-12-01",
     readTime: "5",
-    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebb6122?w=800&q=80"
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
   },
   {
     id: "2",
