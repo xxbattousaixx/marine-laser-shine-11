@@ -78,6 +78,46 @@ const blogPosts: BlogPost[] = [
     date: "2024-11-10",
     readTime: "6",
     image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80"
+  },
+  {
+    id: "7",
+    slug: "paint-removal-laser-technology-guide",
+    titleKey: "blog.post7.title",
+    excerptKey: "blog.post7.excerpt",
+    categoryKey: "blog.category.technique",
+    date: "2024-11-05",
+    readTime: "6",
+    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80"
+  },
+  {
+    id: "8",
+    slug: "oil-gas-industry-laser-cleaning-applications",
+    titleKey: "blog.post8.title",
+    excerptKey: "blog.post8.excerpt",
+    categoryKey: "blog.category.oilgas",
+    date: "2024-10-28",
+    readTime: "7",
+    image: "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&q=80"
+  },
+  {
+    id: "9",
+    slug: "welding-preparation-laser-cleaning-benefits",
+    titleKey: "blog.post9.title",
+    excerptKey: "blog.post9.excerpt",
+    categoryKey: "blog.category.welding",
+    date: "2024-10-20",
+    readTime: "5",
+    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebb6122?w=800&q=80"
+  },
+  {
+    id: "10",
+    slug: "historical-monument-restoration-laser-cleaning",
+    titleKey: "blog.post10.title",
+    excerptKey: "blog.post10.excerpt",
+    categoryKey: "blog.category.restoration",
+    date: "2024-10-15",
+    readTime: "6",
+    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80"
   }
 ];
 
