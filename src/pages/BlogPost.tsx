@@ -84,7 +84,7 @@ const blogPosts: BlogPostData[] = [
     categoryKey: "blog.category.aerospace",
     date: "2024-11-10",
     readTime: "6",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80"
+    image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&q=80"
   },
   {
     id: "7",
@@ -106,7 +106,7 @@ const blogPosts: BlogPostData[] = [
     categoryKey: "blog.category.oilgas",
     date: "2024-10-28",
     readTime: "7",
-    image: "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=1200&q=80"
+    image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80"
   },
   {
     id: "9",
