@@ -31,7 +31,7 @@ Deno.serve(async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Marine Laser Clean <onboarding@resend.dev>",
-        to: ["contact@marinelaserclean.com"], // Replace with your actual email
+        to: ["dcarrassi7@gmail.com"], // Your verified email
         subject: `New Contact Form Submission from ${name}`,
         html: `
           <h2>New Contact Form Submission</h2>
