@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import weldingPrepImage from "@/assets/blog/welding-prep.jpg";
 
 interface BlogPost {
   id: string;
@@ -107,7 +108,7 @@ const blogPosts: BlogPost[] = [
     categoryKey: "blog.category.welding",
     date: "2024-10-20",
     readTime: "5",
-    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebb6122?w=800&q=80"
+    image: weldingPrepImage
   },
   {
     id: "10",
