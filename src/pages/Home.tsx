@@ -5,6 +5,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Sparkles, Leaf, Clock, Layers, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
+import MarineLaserIntro from "@/components/MarineLaserIntro";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -41,28 +42,9 @@ const Home = () => {
     <div className="min-h-screen flex flex-col">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 bg-gradient-to-br from-primary/5 via-background to-accent/5">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
-            {t('home.hero.title')}
-          </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            {t('home.hero.subtitle')}
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Link to="/contact">
-              <Button size="lg" className="text-lg px-8">
-                {t('home.hero.cta')}
-              </Button>
-            </Link>
-            <Link to="/services">
-              <Button size="lg" variant="outline" className="text-lg px-8">
-                {t('home.hero.cta2')}
-              </Button>
-            </Link>
-          </div>
-        </div>
+      {/* 3D Laser Intro Section */}
+      <section className="pt-20">
+        <MarineLaserIntro />
       </section>
 
       {/* Features Section */}
