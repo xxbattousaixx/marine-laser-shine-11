@@ -307,13 +307,6 @@ const MarineLaserIntro = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className={`absolute bottom-24 left-1/2 -translate-x-1/2 transition-opacity duration-1000 ${
-        showContent ? 'opacity-100' : 'opacity-0'
-      }`}>
-        <ScrollIndicator targetId="features" />
-      </div>
-
       {/* Bottom info bar */}
       <div className={`absolute bottom-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center text-xs text-gray-500 tracking-widest transition-opacity duration-1000 ${
         showContent ? 'opacity-100' : 'opacity-0'
