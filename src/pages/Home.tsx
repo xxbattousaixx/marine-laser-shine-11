@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Sparkles, Leaf, Clock, Layers, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
 import MarineLaserIntro from "@/components/MarineLaserIntro";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -48,28 +47,32 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4">
+      <section id="features" className="py-20 px-4 bg-gradient-to-b from-background to-background/95">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">
-            {t('home.features.title')}
-          </h2>
+          <AnimatedSection animation="fade-up">
+            <h2 className="text-4xl font-bold text-center mb-12 text-foreground">
+              {t('home.features.title')}
+            </h2>
+          </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {features.map((feature, index) => (
-              <Card key={index} className="border-2 hover:border-primary transition-colors">
-                <CardContent className="pt-6 text-center">
-                  <div className="mb-4 flex justify-center">
-                    <div className="p-4 bg-primary/10 rounded-full">
-                      <feature.icon className="h-8 w-8 text-primary" />
+              <AnimatedSection key={index} animation="scale" delay={index * 100}>
+                <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 h-full">
+                  <CardContent className="pt-6 text-center">
+                    <div className="mb-4 flex justify-center">
+                      <div className="p-4 bg-primary/10 rounded-full transition-transform duration-300 group-hover:scale-110">
+                        <feature.icon className="h-8 w-8 text-primary" />
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
+                    <h3 className="text-xl font-semibold mb-2 text-foreground">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground">
+                      {feature.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
             ))}
           </div>
         </div>

@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import ScrollIndicator from './ScrollIndicator';
 
 const MarineLaserIntro = () => {
   const { t } = useLanguage();
@@ -304,6 +305,13 @@ const MarineLaserIntro = () => {
             </Link>
           </div>
         </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className={`absolute bottom-24 left-1/2 -translate-x-1/2 transition-opacity duration-1000 ${
+        showContent ? 'opacity-100' : 'opacity-0'
+      }`}>
+        <ScrollIndicator targetId="features" />
       </div>
 
       {/* Bottom info bar */}
