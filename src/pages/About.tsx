@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Target, Eye, Recycle, Zap, Shield } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
 import AnimatedSection from "@/components/AnimatedSection";
+import FloatingVideo from "@/components/FloatingVideo";
 
 const About = () => {
   const { t } = useLanguage();
@@ -108,6 +109,7 @@ const About = () => {
         </div>
       </main>
 
+      <FloatingVideo />
       <Footer />
     </div>
   );

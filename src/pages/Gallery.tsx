@@ -3,6 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import FloatingVideo from "@/components/FloatingVideo";
 import shipBefore from "@/assets/gallery/ship-before.jpg";
 import shipAfter from "@/assets/gallery/ship-after.jpg";
 import machineryBefore from "@/assets/gallery/machinery-before.jpg";
@@ -75,6 +76,7 @@ const Gallery = () => {
         </div>
       </main>
 
+      <FloatingVideo />
       <Footer />
     </div>
   );

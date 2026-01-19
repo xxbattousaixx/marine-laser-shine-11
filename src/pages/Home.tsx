@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Sparkles, Leaf, Clock, Layers, Zap } from "lucide-react";
 import MarineLaserIntro from "@/components/MarineLaserIntro";
 import AnimatedSection from "@/components/AnimatedSection";
+import VideoShowcase from "@/components/VideoShowcase";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -45,6 +46,9 @@ const Home = () => {
       <section className="pt-20">
         <MarineLaserIntro />
       </section>
+
+      {/* Video Showcase Section */}
+      <VideoShowcase />
 
       {/* Features Section */}
       <section id="features" className="py-20 px-4 bg-gradient-to-b from-background to-background/95">

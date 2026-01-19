@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Ship, Cog, Droplet, Package } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
 import AnimatedSection from "@/components/AnimatedSection";
+import FloatingVideo from "@/components/FloatingVideo";
 
 const Services = () => {
   const { t } = useLanguage();
@@ -78,6 +79,7 @@ const Services = () => {
         </div>
       </main>
 
+      <FloatingVideo />
       <Footer />
     </div>
   );
