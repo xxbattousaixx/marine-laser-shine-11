@@ -25,9 +25,9 @@ const VideoShowcase = ({ className = "" }: VideoShowcaseProps) => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
                 6000W Laser Cleaning
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t('video.subtitle') || 'Watch how our advanced laser cleaning solutions deliver exceptional results for marine and industrial applications.'}
-              </p>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Experience industrial-grade rust removal with an average cleaning rate of 20m² per hour. Our 6000W system delivers precision cleaning for marine vessels, heavy machinery, and industrial equipment — chemical-free and surface-safe.
+            </p>
             </div>
           </AnimatedSection>
 
