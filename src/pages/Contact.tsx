@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,7 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -49,8 +50,49 @@ const Contact = () => {
     }
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": t('contact.title'),
+    "description": t('seo.contact.description'),
+    "url": "https://marinelaserclean.com/contact",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Marine Laser Clean",
+      "telephone": "+58-412-324-3681",
+      "email": "lasercleanvz@proton.me",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cabimas",
+        "addressRegion": "Zulia",
+        "addressCountry": "VE"
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Helmet>
+        <html lang={language} />
+        <title>{t('seo.contact.title')}</title>
+        <meta name="description" content={t('seo.contact.description')} />
+        <link rel="canonical" href="https://marinelaserclean.com/contact" />
+        
+        <meta property="og:title" content={t('seo.contact.title')} />
+        <meta property="og:description" content={t('seo.contact.description')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://marinelaserclean.com/contact" />
+        
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={t('seo.contact.title')} />
+        <meta name="twitter:description" content={t('seo.contact.description')} />
+        
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+      
+      <div className="min-h-screen flex flex-col">
       <Navigation />
       
       <main className="flex-grow pt-24 pb-12">
@@ -150,7 +192,8 @@ const Contact = () => {
       </main>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

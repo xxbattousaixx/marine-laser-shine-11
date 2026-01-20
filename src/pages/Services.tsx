@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
@@ -8,7 +9,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import FloatingVideo from "@/components/FloatingVideo";
 
 const Services = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const services = [
     {
@@ -33,8 +34,59 @@ const Services = () => {
     },
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Industrial Laser Cleaning",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Marine Laser Clean",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cabimas",
+        "addressRegion": "Zulia",
+        "addressCountry": "VE"
+      }
+    },
+    "areaServed": "Venezuela",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Laser Cleaning Services",
+      "itemListElement": services.map((service, index) => ({
+        "@type": "Offer",
+        "position": index + 1,
+        "itemOffered": {
+          "@type": "Service",
+          "name": service.title,
+          "description": service.description
+        }
+      }))
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <>
+      <Helmet>
+        <html lang={language} />
+        <title>{t('seo.services.title')}</title>
+        <meta name="description" content={t('seo.services.description')} />
+        <link rel="canonical" href="https://marinelaserclean.com/services" />
+        
+        <meta property="og:title" content={t('seo.services.title')} />
+        <meta property="og:description" content={t('seo.services.description')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://marinelaserclean.com/services" />
+        
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={t('seo.services.title')} />
+        <meta name="twitter:description" content={t('seo.services.description')} />
+        
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+      
+      <div className="min-h-screen flex flex-col relative">
       <ParticleBackground variant="services" />
       <Navigation />
       
@@ -81,7 +133,8 @@ const Services = () => {
 
       <FloatingVideo />
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

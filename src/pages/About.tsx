@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
@@ -8,7 +9,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import FloatingVideo from "@/components/FloatingVideo";
 
 const About = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const values = [
     { icon: Recycle, text: t('about.values.quality') },
@@ -17,8 +18,47 @@ const About = () => {
     { icon: Target, text: t('about.values.safety') },
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Marine Laser Clean",
+    "description": t('seo.about.description'),
+    "url": "https://marinelaserclean.com/about",
+    "foundingLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cabimas",
+        "addressRegion": "Zulia",
+        "addressCountry": "VE"
+      }
+    },
+    "knowsAbout": ["Industrial Laser Cleaning", "Rust Removal", "Surface Preparation", "Maritime Maintenance"]
+  };
+
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <>
+      <Helmet>
+        <html lang={language} />
+        <title>{t('seo.about.title')}</title>
+        <meta name="description" content={t('seo.about.description')} />
+        <link rel="canonical" href="https://marinelaserclean.com/about" />
+        
+        <meta property="og:title" content={t('seo.about.title')} />
+        <meta property="og:description" content={t('seo.about.description')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://marinelaserclean.com/about" />
+        
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={t('seo.about.title')} />
+        <meta name="twitter:description" content={t('seo.about.description')} />
+        
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+      
+      <div className="min-h-screen flex flex-col relative">
       <ParticleBackground variant="about" />
       <Navigation />
       
@@ -111,7 +151,8 @@ const About = () => {
 
       <FloatingVideo />
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 
