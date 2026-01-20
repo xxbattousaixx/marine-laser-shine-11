@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -18,7 +19,7 @@ import engineBefore from "@/assets/gallery/engine-before.jpg";
 import engineAfter from "@/assets/gallery/engine-after.jpg";
 
 const Gallery = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const galleryItems = [
     { id: 1, image: shipBefore, label: t('gallery.before'), category: 'Ship Cabin' },
@@ -35,8 +36,41 @@ const Gallery = () => {
     { id: 12, image: partsAfter, label: t('gallery.after'), category: 'Metal Parts' },
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "name": t('gallery.title'),
+    "description": t('seo.gallery.description'),
+    "url": "https://marinelaserclean.com/gallery",
+    "creator": {
+      "@type": "Organization",
+      "name": "Marine Laser Clean"
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Helmet>
+        <html lang={language} />
+        <title>{t('seo.gallery.title')}</title>
+        <meta name="description" content={t('seo.gallery.description')} />
+        <link rel="canonical" href="https://marinelaserclean.com/gallery" />
+        
+        <meta property="og:title" content={t('seo.gallery.title')} />
+        <meta property="og:description" content={t('seo.gallery.description')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://marinelaserclean.com/gallery" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={t('seo.gallery.title')} />
+        <meta name="twitter:description" content={t('seo.gallery.description')} />
+        
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+      
+      <div className="min-h-screen flex flex-col">
       <Navigation />
       
       <main className="flex-grow pt-24 pb-12">
@@ -78,7 +112,8 @@ const Gallery = () => {
 
       <FloatingVideo />
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
@@ -8,7 +9,61 @@ import AnimatedSection from "@/components/AnimatedSection";
 import VideoShowcase from "@/components/VideoShowcase";
 
 const Home = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Marine Laser Clean",
+    "description": t('seo.home.description'),
+    "url": "https://marinelaserclean.com",
+    "telephone": "+58-412-324-3681",
+    "email": "lasercleanvz@proton.me",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cabimas",
+      "addressRegion": "Zulia",
+      "addressCountry": "VE"
+    },
+    "priceRange": "$$",
+    "openingHours": "Mo-Fr 08:00-18:00",
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 10.4,
+        "longitude": -71.45
+      },
+      "geoRadius": "500"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Industrial Laser Cleaning Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": t('services.ship.title')
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": t('services.machinery.title')
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": t('services.rust.title')
+          }
+        }
+      ]
+    }
+  };
 
   const features = [
     {
@@ -39,7 +94,31 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Helmet>
+        <html lang={language} />
+        <title>{t('seo.home.title')}</title>
+        <meta name="description" content={t('seo.home.description')} />
+        <meta name="keywords" content="limpieza láser, laser cleaning, rust removal, remoción de óxido, industrial cleaning, limpieza industrial, ship hull cleaning, Venezuela, Cabimas, 6000W laser" />
+        <link rel="canonical" href="https://marinelaserclean.com/" />
+        
+        <meta property="og:title" content={t('seo.home.title')} />
+        <meta property="og:description" content={t('seo.home.description')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://marinelaserclean.com/" />
+        <meta property="og:site_name" content="Marine Laser Clean" />
+        <meta property="og:locale" content={language === 'es' ? 'es_VE' : language === 'zh' ? 'zh_CN' : 'en_US'} />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={t('seo.home.title')} />
+        <meta name="twitter:description" content={t('seo.home.description')} />
+        
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+      
+      <div className="min-h-screen flex flex-col">
       <Navigation />
       
       {/* 3D Laser Intro Section */}
@@ -83,7 +162,8 @@ const Home = () => {
       </section>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

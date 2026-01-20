@@ -84,6 +84,18 @@ const translations = {
     'footer.location': 'Cabimas, Zulia, Venezuela',
     'footer.company': 'Marine Laser Clean',
     
+    // SEO Meta Tags
+    'seo.home.title': 'Marine Laser Clean | Limpieza Láser Industrial 6000W en Venezuela',
+    'seo.home.description': 'Servicios profesionales de limpieza láser industrial con equipo de 6000W. Remoción de óxido, preparación de superficies para soldadura, limpieza marítima y más. Cabimas, Zulia, Venezuela.',
+    'seo.about.title': 'Sobre Nosotros | Marine Laser Clean - Expertos en Limpieza Láser',
+    'seo.about.description': 'Conozca nuestra tecnología de limpieza láser de 6000W. Proveedores especializados de servicios B2B para industria marítima, manufactura, energía y aeroespacial.',
+    'seo.services.title': 'Servicios de Limpieza Láser Industrial | Marine Laser Clean',
+    'seo.services.description': 'Servicios de limpieza láser para marítimo, manufactura, energía e infraestructura. Remoción de óxido, preparación de soldadura, mantenimiento de equipos sin daño al sustrato.',
+    'seo.gallery.title': 'Galería de Trabajos | Marine Laser Clean - Antes y Después',
+    'seo.gallery.description': 'Vea resultados reales de limpieza láser industrial. Fotos antes y después de cascos de barcos, maquinaria, tuberías y componentes industriales.',
+    'seo.contact.title': 'Contáctenos | Marine Laser Clean - Solicite Cotización',
+    'seo.contact.description': 'Solicite una cotización para servicios de limpieza láser industrial. Ubicados en Cabimas, Zulia, Venezuela. Atención personalizada para su proyecto.',
+    
     // Blog
     'nav.blog': 'Blog',
     'blog.title': 'Blog de Limpieza Láser Industrial',
@@ -214,6 +226,18 @@ const translations = {
     'footer.location': 'Cabimas, Zulia, Venezuela',
     'footer.company': 'Marine Laser Clean',
     
+    // SEO Meta Tags
+    'seo.home.title': 'Marine Laser Clean | Industrial 6000W Laser Cleaning in Venezuela',
+    'seo.home.description': 'Professional industrial laser cleaning services with 6000W equipment. Rust removal, weld preparation, maritime cleaning and more. Cabimas, Zulia, Venezuela.',
+    'seo.about.title': 'About Us | Marine Laser Clean - Laser Cleaning Experts',
+    'seo.about.description': 'Learn about our 6000W laser cleaning technology. Specialized B2B service providers for maritime, manufacturing, energy and aerospace industries.',
+    'seo.services.title': 'Industrial Laser Cleaning Services | Marine Laser Clean',
+    'seo.services.description': 'Laser cleaning services for maritime, manufacturing, energy and infrastructure. Rust removal, weld preparation, equipment maintenance without substrate damage.',
+    'seo.gallery.title': 'Work Gallery | Marine Laser Clean - Before and After',
+    'seo.gallery.description': 'See real industrial laser cleaning results. Before and after photos of ship hulls, machinery, pipes and industrial components.',
+    'seo.contact.title': 'Contact Us | Marine Laser Clean - Request Quote',
+    'seo.contact.description': 'Request a quote for industrial laser cleaning services. Located in Cabimas, Zulia, Venezuela. Personalized attention for your project.',
+    
     // Blog
     'nav.blog': 'Blog',
     'blog.title': 'Industrial Laser Cleaning Blog',
@@ -341,6 +365,18 @@ const translations = {
     'footer.rights': '版权所有',
     'footer.location': '卡比马斯，苏利亚，委内瑞拉',
     'footer.company': 'Marine Laser Clean',
+    
+    // SEO Meta Tags
+    'seo.home.title': 'Marine Laser Clean | 委内瑞拉6000W工业激光清洁',
+    'seo.home.description': '专业工业激光清洁服务，配备6000W设备。除锈、焊接准备、海事清洁等。卡比马斯，苏利亚，委内瑞拉。',
+    'seo.about.title': '关于我们 | Marine Laser Clean - 激光清洁专家',
+    'seo.about.description': '了解我们的6000W激光清洁技术。专业B2B服务提供商，服务于海事、制造、能源和航空航天行业。',
+    'seo.services.title': '工业激光清洁服务 | Marine Laser Clean',
+    'seo.services.description': '海事、制造、能源和基础设施激光清洁服务。除锈、焊接准备、设备维护，不损坏基材。',
+    'seo.gallery.title': '作品展示 | Marine Laser Clean - 清洁前后对比',
+    'seo.gallery.description': '查看真实的工业激光清洁效果。船体、机械、管道和工业部件的清洁前后照片。',
+    'seo.contact.title': '联系我们 | Marine Laser Clean - 索取报价',
+    'seo.contact.description': '索取工业激光清洁服务报价。位于委内瑞拉苏利亚州卡比马斯。为您的项目提供个性化服务。',
     
     // Blog
     'nav.blog': '博客',
