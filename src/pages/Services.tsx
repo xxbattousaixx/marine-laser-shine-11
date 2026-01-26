@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { Ship, Cog, Droplet, Package } from "lucide-react";
+import { Ship, Cog, Droplet, Package, Paintbrush } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingVideo from "@/components/FloatingVideo";
@@ -31,6 +31,11 @@ const Services = () => {
       icon: Package,
       title: t('services.parts.title'),
       description: t('services.parts.desc'),
+    },
+    {
+      icon: Paintbrush,
+      title: t('services.coating.title'),
+      description: t('services.coating.desc'),
     },
   ];
 
