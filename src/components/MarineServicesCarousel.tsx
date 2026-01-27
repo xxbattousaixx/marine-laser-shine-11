@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { Ship, Plane, Factory, Zap, Paintbrush } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
@@ -9,8 +12,9 @@ interface ServiceData {
   titleKey: string;
   descKey: string;
   icon: React.ReactNode;
-  color: string;
+  emoji: string;
   gradient: [string, string];
+  accent: string;
 }
 
 const MarineServicesCarousel: React.FC = () => {
@@ -18,143 +22,156 @@ const MarineServicesCarousel: React.FC = () => {
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const cardsRef = useRef<{ group: THREE.Group; index: number }[]>([]);
+  const composerRef = useRef<EffectComposer | null>(null);
+  const cardsRef = useRef<{
+    group: THREE.Group;
+    angle: number;
+    originalY: number;
+    cardMesh: THREE.Mesh;
+    borderMesh: THREE.Mesh;
+    wireframe: THREE.LineSegments;
+  }[]>([]);
   const particlesRef = useRef<THREE.Points | null>(null);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const frameRef = useRef<number>(0);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isRotating, setIsRotating] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const targetRotationRef = useRef(0);
   const currentRotationRef = useRef(0);
-  const animationIdRef = useRef<number>();
+  const autoRotateRef = useRef(true);
+  const clockRef = useRef<THREE.Clock | null>(null);
+
   const { t } = useLanguage();
 
   const services: ServiceData[] = [
     {
       titleKey: 'services.ship.title',
       descKey: 'services.ship.desc',
-      icon: <Ship className="h-8 w-8" />,
-      color: '#0066cc',
-      gradient: ['#0066cc', '#0052a3']
+      icon: <Ship className="h-6 w-6" />,
+      emoji: '⚓',
+      gradient: ['#00d2ff', '#3a7bd5'],
+      accent: '#00d2ff'
     },
     {
       titleKey: 'services.parts.title',
       descKey: 'services.parts.desc',
-      icon: <Plane className="h-8 w-8" />,
-      color: '#0052a3',
-      gradient: ['#0052a3', '#003d99']
+      icon: <Plane className="h-6 w-6" />,
+      emoji: '✈️',
+      gradient: ['#f857a6', '#ff5858'],
+      accent: '#ff5858'
     },
     {
       titleKey: 'services.machinery.title',
       descKey: 'services.machinery.desc',
-      icon: <Factory className="h-8 w-8" />,
-      color: '#003d99',
-      gradient: ['#003d99', '#002d73']
+      icon: <Factory className="h-6 w-6" />,
+      emoji: '⚙️',
+      gradient: ['#f093fb', '#f5576c'],
+      accent: '#f5576c'
     },
     {
       titleKey: 'services.rust.title',
       descKey: 'services.rust.desc',
-      icon: <Zap className="h-8 w-8" />,
-      color: '#002d73',
-      gradient: ['#002d73', '#00264d']
+      icon: <Zap className="h-6 w-6" />,
+      emoji: '⚡',
+      gradient: ['#4facfe', '#00f2fe'],
+      accent: '#00f2fe'
     },
     {
       titleKey: 'services.coating.title',
       descKey: 'services.coating.desc',
-      icon: <Paintbrush className="h-8 w-8" />,
-      color: '#00264d',
-      gradient: ['#00264d', '#0066cc']
+      icon: <Paintbrush className="h-6 w-6" />,
+      emoji: '🎨',
+      gradient: ['#43e97b', '#38f9d7'],
+      accent: '#38f9d7'
     }
   ];
 
-  const rotate = useCallback((direction: number) => {
-    if (isRotating) return;
-    
-    setIsRotating(true);
-    const angleStep = (Math.PI * 2) / services.length;
-    targetRotationRef.current += direction * angleStep;
-    
-    const newIndex = direction > 0
-      ? (currentIndex + 1) % services.length
-      : (currentIndex - 1 + services.length) % services.length;
-    
-    setCurrentIndex(newIndex);
-    
-    setTimeout(() => setIsRotating(false), 700);
-  }, [isRotating, currentIndex, services.length]);
+  const radius = 7;
 
-  const goToSlide = useCallback((index: number) => {
-    if (isRotating || index === currentIndex) return;
-    
-    const diff = index - currentIndex;
-    const angleStep = (Math.PI * 2) / services.length;
-    
-    setIsRotating(true);
-    targetRotationRef.current -= diff * angleStep;
-    setCurrentIndex(index);
-    
-    setTimeout(() => setIsRotating(false), 700);
-  }, [isRotating, currentIndex, services.length]);
-
+  // Initialize Three.js scene
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Scene setup
+    const width = containerRef.current.clientWidth;
+    const height = containerRef.current.clientHeight;
+
+    // Scene setup with fog for depth
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x0a0a1a, 10, 50);
+    scene.fog = new THREE.FogExp2(0x050510, 0.02);
     sceneRef.current = scene;
 
     // Camera setup
-    const camera = new THREE.PerspectiveCamera(
-      45,
-      containerRef.current.clientWidth / containerRef.current.clientHeight,
-      0.1,
-      1000
-    );
-    camera.position.set(0, 0, 18);
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+    camera.position.set(0, 2, 14);
     cameraRef.current = camera;
 
-    // Renderer setup
+    // Renderer with alpha and antialiasing
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
       powerPreference: 'high-performance'
     });
-    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+    renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    // Post-processing for bloom effects
+    const renderScene = new RenderPass(scene, camera);
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(width, height),
+      1.5,
+      0.4,
+      0.85
+    );
+    bloomPass.threshold = 0.2;
+    bloomPass.strength = 0.8;
+    bloomPass.radius = 0.5;
+
+    const composer = new EffectComposer(renderer);
+    composer.addPass(renderScene);
+    composer.addPass(bloomPass);
+    composerRef.current = composer;
+
+    // Lighting setup - dramatic cinematic lighting
+    const ambientLight = new THREE.AmbientLight(0x1a1a2e, 0.5);
     scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    mainLight.position.set(5, 5, 5);
+    const mainLight = new THREE.DirectionalLight(0xffffff, 1);
+    mainLight.position.set(5, 10, 7);
     mainLight.castShadow = true;
+    mainLight.shadow.mapSize.width = 2048;
+    mainLight.shadow.mapSize.height = 2048;
     scene.add(mainLight);
 
-    const fillLight = new THREE.PointLight(0x4a90e2, 0.5);
+    const fillLight = new THREE.PointLight(0x00d2ff, 0.8, 20);
     fillLight.position.set(-5, 0, 5);
     scene.add(fillLight);
 
-    const backLight = new THREE.PointLight(0x667eea, 0.4);
-    backLight.position.set(0, -5, -5);
+    const backLight = new THREE.PointLight(0xff5858, 0.6, 20);
+    backLight.position.set(0, 5, -5);
     scene.add(backLight);
 
-    // Particle background
+    // Particle system
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 1500;
-    const positions = new Float32Array(particlesCount * 3);
+    const particlesCount = 100;
+    const posArray = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 50;
+      posArray[i] = (Math.random() - 0.5) * 30;
     }
 
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
     const particlesMaterial = new THREE.PointsMaterial({
-      color: 0x4a90e2,
       size: 0.05,
+      color: 0x4a90e2,
       transparent: true,
       opacity: 0.6,
       blending: THREE.AdditiveBlending
@@ -164,42 +181,23 @@ const MarineServicesCarousel: React.FC = () => {
     scene.add(particles);
     particlesRef.current = particles;
 
-    // Create cards
-    const radius = 8;
+    // Create holographic cards
     const angleStep = (Math.PI * 2) / services.length;
 
     services.forEach((service, index) => {
       const group = new THREE.Group();
 
-      // Card base with rounded corners
-      const cardShape = new THREE.Shape();
-      const width = 4;
-      const height = 5;
-      const radiusCorner = 0.2;
-
-      cardShape.moveTo(-width / 2 + radiusCorner, -height / 2);
-      cardShape.lineTo(width / 2 - radiusCorner, -height / 2);
-      cardShape.quadraticCurveTo(width / 2, -height / 2, width / 2, -height / 2 + radiusCorner);
-      cardShape.lineTo(width / 2, height / 2 - radiusCorner);
-      cardShape.quadraticCurveTo(width / 2, height / 2, width / 2 - radiusCorner, height / 2);
-      cardShape.lineTo(-width / 2 + radiusCorner, height / 2);
-      cardShape.quadraticCurveTo(-width / 2, height / 2, -width / 2, height / 2 - radiusCorner);
-      cardShape.lineTo(-width / 2, -height / 2 + radiusCorner);
-      cardShape.quadraticCurveTo(-width / 2, -height / 2, -width / 2 + radiusCorner, -height / 2);
-
-      const extrudeSettings = {
-        depth: 0.1,
-        bevelEnabled: true,
-        bevelThickness: 0.05,
-        bevelSize: 0.05,
-        bevelSegments: 5
-      };
-
-      const cardGeometry = new THREE.ExtrudeGeometry(cardShape, extrudeSettings);
-      const cardMaterial = new THREE.MeshStandardMaterial({
-        color: 0xffffff,
-        roughness: 0.3,
+      // Glass-like card material
+      const cardGeometry = new THREE.BoxGeometry(3.2, 4.5, 0.08);
+      const cardMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0x0f0f23,
         metalness: 0.1,
+        roughness: 0.1,
+        transparent: true,
+        opacity: 0.85,
+        transmission: 0.1,
+        clearcoat: 1,
+        clearcoatRoughness: 0.1,
         side: THREE.DoubleSide
       });
 
@@ -208,202 +206,349 @@ const MarineServicesCarousel: React.FC = () => {
       card.receiveShadow = true;
       group.add(card);
 
-      // Border glow
-      const borderGeometry = new THREE.EdgesGeometry(cardGeometry);
-      const borderMaterial = new THREE.LineBasicMaterial({
-        color: new THREE.Color(service.color),
+      // Glowing border
+      const borderGeometry = new THREE.BoxGeometry(3.3, 4.6, 0.09);
+      const borderMaterial = new THREE.MeshBasicMaterial({
+        color: new THREE.Color(service.accent),
         transparent: true,
-        opacity: 0.6
+        opacity: 0.3,
+        side: THREE.BackSide
       });
-      const border = new THREE.LineSegments(borderGeometry, borderMaterial);
+      const border = new THREE.Mesh(borderGeometry, borderMaterial);
       group.add(border);
 
-      // Accent strip
-      const stripGeometry = new THREE.BoxGeometry(4, 0.3, 0.11);
-      const stripMaterial = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(service.color),
-        roughness: 0.2,
-        metalness: 0.8,
-        emissive: new THREE.Color(service.color),
-        emissiveIntensity: 0.3
+      // Inner glow line
+      const edges = new THREE.EdgesGeometry(cardGeometry);
+      const lineMaterial = new THREE.LineBasicMaterial({
+        color: new THREE.Color(service.accent),
+        transparent: true,
+        opacity: 0.8
       });
+      const wireframe = new THREE.LineSegments(edges, lineMaterial);
+      group.add(wireframe);
 
-      const strip = new THREE.Mesh(stripGeometry, stripMaterial);
-      strip.position.set(0, -2.2, 0.06);
-      group.add(strip);
-
-      // Position card in circle
+      // Position in circle
       const angle = index * angleStep;
       group.position.x = Math.sin(angle) * radius;
       group.position.z = Math.cos(angle) * radius;
       group.rotation.y = -angle;
 
+      cardsRef.current.push({
+        group,
+        angle,
+        originalY: 0,
+        cardMesh: card,
+        borderMesh: border,
+        wireframe
+      });
+
       scene.add(group);
-      cardsRef.current.push({ group, index });
     });
+
+    // Clock for animations
+    clockRef.current = new THREE.Clock();
+
+    // Mouse move handler
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseRef.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouseRef.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    };
+
+    // Resize handler
+    const handleResize = () => {
+      if (!containerRef.current || !camera || !renderer || !composer) return;
+      const newWidth = containerRef.current.clientWidth;
+      const newHeight = containerRef.current.clientHeight;
+
+      camera.aspect = newWidth / newHeight;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(newWidth, newHeight);
+      composer.setSize(newWidth, newHeight);
+    };
+
+    containerRef.current.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
 
     // Animation loop
     const animate = () => {
-      animationIdRef.current = requestAnimationFrame(animate);
+      frameRef.current = requestAnimationFrame(animate);
+      if (!clockRef.current) return;
+      const time = clockRef.current.getElapsedTime();
 
-      // Smooth rotation
+      // Smooth rotation interpolation
+      const rotationSpeed = 0.05;
       const diff = targetRotationRef.current - currentRotationRef.current;
-      currentRotationRef.current += diff * 0.1;
 
-      cardsRef.current.forEach(({ group }, index) => {
-        const baseAngle = index * angleStep;
-        const totalAngle = baseAngle + currentRotationRef.current;
-
-        group.position.x = Math.sin(totalAngle) * radius;
-        group.position.z = Math.cos(totalAngle) * radius;
-        group.rotation.y = -totalAngle;
-
-        // Scale effect for focused card
-        const normalizedAngle = ((totalAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-        const distanceFromFront = Math.abs(normalizedAngle);
-        const scale = 1 + (1 - Math.min(distanceFromFront / Math.PI, 1)) * 0.15;
-        group.scale.setScalar(scale);
-
-        // Opacity effect
-        group.children.forEach(child => {
-          if ((child as THREE.Mesh).material) {
-            const material = (child as THREE.Mesh).material as THREE.Material;
-            material.opacity = 0.5 + (1 - Math.min(distanceFromFront / Math.PI, 1)) * 0.5;
-            material.transparent = true;
-          }
-        });
-      });
-
-      // Rotate particles
-      if (particlesRef.current) {
-        particlesRef.current.rotation.y += 0.0005;
-        particlesRef.current.rotation.x += 0.0002;
+      if (Math.abs(diff) > 0.001) {
+        currentRotationRef.current += diff * rotationSpeed;
+      } else if (autoRotateRef.current) {
+        targetRotationRef.current += 0.001;
+        currentRotationRef.current += 0.001;
       }
 
-      // Camera subtle movement
-      camera.position.y = Math.sin(Date.now() * 0.0005) * 0.3;
+      const angleStep = (Math.PI * 2) / services.length;
 
-      renderer.render(scene, camera);
+      // Update card positions
+      cardsRef.current.forEach((item, index) => {
+        const baseAngle = item.angle + currentRotationRef.current;
+
+        // Circular motion
+        item.group.position.x = Math.sin(baseAngle) * radius;
+        item.group.position.z = Math.cos(baseAngle) * radius;
+        item.group.rotation.y = -baseAngle;
+
+        // Floating animation
+        const floatOffset = Math.sin(time * 2 + index) * 0.1;
+        item.group.position.y = item.originalY + floatOffset;
+
+        // Scale and glow based on facing direction
+        const facingAngle = baseAngle % (Math.PI * 2);
+        const normalizedAngle = ((facingAngle + Math.PI) % (Math.PI * 2)) - Math.PI;
+        const distanceFromFront = Math.abs(normalizedAngle);
+
+        const scale = Math.max(0.8, 1 - (distanceFromFront / Math.PI) * 0.2);
+        item.group.scale.setScalar(scale);
+
+        // Dynamic opacity/glow
+        const opacity = Math.max(0.4, 1 - (distanceFromFront / Math.PI) * 0.6);
+        (item.borderMesh.material as THREE.MeshBasicMaterial).opacity = opacity * 0.5;
+        (item.wireframe.material as THREE.LineBasicMaterial).opacity = opacity;
+
+        // Hover effect
+        if (hoveredIndex === index) {
+          item.group.scale.multiplyScalar(1.05);
+          (item.borderMesh.material as THREE.MeshBasicMaterial).opacity = 0.8;
+        }
+      });
+
+      // Particle animation
+      if (particlesRef.current) {
+        particlesRef.current.rotation.y = time * 0.05;
+        particlesRef.current.rotation.x = Math.sin(time * 0.1) * 0.1;
+      }
+
+      // Camera subtle parallax
+      const targetCamX = mouseRef.current.x * 0.5;
+      const targetCamY = 2 + mouseRef.current.y * 0.2;
+      camera.position.x += (targetCamX - camera.position.x) * 0.05;
+      camera.position.y += (targetCamY - camera.position.y) * 0.05;
+      camera.lookAt(0, 0, 0);
+
+      composer.render();
     };
 
     animate();
 
-    // Handle resize
-    const handleResize = () => {
-      if (!containerRef.current) return;
-
-      camera.aspect = containerRef.current.clientWidth / containerRef.current.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
-    };
-
-    window.addEventListener('resize', handleResize);
-
     // Cleanup
     return () => {
-      window.removeEventListener('resize', handleResize);
-      if (animationIdRef.current) {
-        cancelAnimationFrame(animationIdRef.current);
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('mousemove', handleMouseMove);
       }
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(frameRef.current);
       if (containerRef.current && renderer.domElement) {
         containerRef.current.removeChild(renderer.domElement);
       }
       renderer.dispose();
+      scene.clear();
       cardsRef.current = [];
     };
   }, []);
 
+  // Update hovered index effect
+  useEffect(() => {
+    // This effect triggers re-render for hover state
+  }, [hoveredIndex]);
+
+  const rotate = useCallback((direction: number) => {
+    if (isRotating) return;
+    setIsRotating(true);
+    autoRotateRef.current = false;
+
+    const angleStep = (Math.PI * 2) / services.length;
+    targetRotationRef.current += direction * angleStep;
+
+    const newIndex = direction > 0
+      ? (currentIndex + 1) % services.length
+      : (currentIndex - 1 + services.length) % services.length;
+
+    setCurrentIndex(newIndex);
+    setTimeout(() => setIsRotating(false), 800);
+  }, [currentIndex, isRotating, services.length]);
+
+  const goToSlide = useCallback((index: number) => {
+    if (isRotating || index === currentIndex) return;
+    setIsRotating(true);
+    autoRotateRef.current = false;
+
+    const angleStep = (Math.PI * 2) / services.length;
+    const diff = index - currentIndex;
+    const shortestDiff = ((diff + services.length + services.length / 2) % services.length) - services.length / 2;
+
+    targetRotationRef.current += shortestDiff * angleStep;
+    setCurrentIndex(index);
+    setTimeout(() => setIsRotating(false), 800);
+  }, [currentIndex, isRotating, services.length]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') rotate(-1);
+      if (e.key === 'ArrowRight') rotate(1);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [rotate]);
+
   const currentService = services[currentIndex];
 
+  const tags = [
+    t('carousel.tag.eco'),
+    t('carousel.tag.zero'),
+    t('carousel.tag.precision')
+  ];
+
   return (
-    <div className="relative w-full h-[600px] overflow-hidden rounded-2xl bg-gradient-to-b from-background to-muted/50">
-      {/* 3D Canvas */}
-      <div 
-        ref={containerRef} 
-        className="absolute inset-0 z-0"
-        style={{ background: 'radial-gradient(ellipse at center, hsl(var(--muted)) 0%, hsl(var(--background)) 100%)' }}
-      />
-      
-      {/* Content Overlay */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        {/* Header */}
-        <div className="absolute top-6 left-0 right-0 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-            {t('carousel.title')}
-          </h2>
-          <p className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto px-4">
-            {t('carousel.subtitle')}
-          </p>
-        </div>
-        
-        {/* Current Service Info */}
-        <div className="absolute bottom-32 left-0 right-0 flex justify-center pointer-events-auto">
-          <div 
-            className={cn(
-              "bg-card/90 backdrop-blur-md rounded-xl p-6 shadow-xl border border-border",
-              "max-w-md mx-4 text-center transition-all duration-500"
-            )}
-            style={{
-              boxShadow: `0 10px 40px ${currentService.color}30`
-            }}
-          >
-            <div 
-              className="inline-flex items-center justify-center w-14 h-14 rounded-full mb-4 text-primary-foreground"
-              style={{ background: `linear-gradient(135deg, ${currentService.gradient[0]}, ${currentService.gradient[1]})` }}
+    <div className="w-full min-h-[700px] py-6">
+      {/* Header */}
+      <div className="text-center mb-6 relative z-10">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-foreground mb-3">
+          {t('carousel.header.industrial')}{' '}
+          <span className="bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] bg-clip-text text-transparent">
+            {t('carousel.header.laser')}
+          </span>{' '}
+          {t('carousel.header.solutions')}
+        </h1>
+        <p className="text-muted-foreground text-base md:text-lg">
+          {t('carousel.subtitle')}
+        </p>
+      </div>
+
+      {/* Main Container */}
+      <div
+        className="relative w-full max-w-[1400px] h-[600px] mx-auto rounded-3xl overflow-hidden"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(20, 20, 40, 0.8) 0%, rgba(5, 5, 16, 0.95) 100%)',
+          boxShadow: '0 0 80px rgba(0, 210, 255, 0.1), inset 0 0 80px rgba(0, 0, 0, 0.5)',
+          border: '1px solid rgba(255, 255, 255, 0.1)'
+        }}
+      >
+        {/* 3D Canvas */}
+        <div
+          ref={containerRef}
+          className="w-full h-full cursor-grab active:cursor-grabbing"
+        />
+
+        {/* Glassmorphism Info Card */}
+        <div
+          className="absolute bottom-24 left-1/2 -translate-x-1/2 backdrop-blur-xl rounded-3xl p-6 md:p-8 max-w-[500px] w-[90%] text-center transition-all duration-500 z-10"
+          style={{
+            background: 'rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            boxShadow: `0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px ${currentService.accent}20`
+          }}
+        >
+          <div className="mb-4">
+            <div
+              className="w-16 h-16 rounded-2xl inline-flex items-center justify-center text-3xl mx-auto"
+              style={{
+                background: `linear-gradient(135deg, ${currentService.gradient[0]}, ${currentService.gradient[1]})`,
+                boxShadow: `0 0 30px ${currentService.accent}40`
+              }}
             >
-              {currentService.icon}
+              {currentService.emoji}
             </div>
-            <h3 className="text-xl font-bold text-foreground mb-2">
-              {t(currentService.titleKey)}
-            </h3>
-            <p className="text-muted-foreground text-sm line-clamp-3">
-              {t(currentService.descKey)}
-            </p>
+          </div>
+
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-3">
+            {t(currentService.titleKey)}
+          </h2>
+          <p className="text-sm md:text-base text-white/70 leading-relaxed mb-5 line-clamp-3">
+            {t(currentService.descKey)}
+          </p>
+
+          <div className="flex gap-2 justify-center flex-wrap">
+            {tags.map((tag, i) => (
+              <span
+                key={i}
+                className="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider"
+                style={{
+                  border: `1px solid ${currentService.accent}`,
+                  color: currentService.accent,
+                  background: 'rgba(255, 255, 255, 0.05)'
+                }}
+              >
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* Navigation Controls */}
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center gap-4 pointer-events-auto">
-          <Button
-            variant="outline"
-            size="icon"
-            className="h-12 w-12 rounded-full bg-card/80 backdrop-blur-sm border-2 hover:bg-primary hover:text-primary-foreground transition-all"
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-5 z-20">
+          <button
             onClick={() => rotate(-1)}
             disabled={isRotating}
+            className="w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-lg transition-all duration-300 hover:scale-110 disabled:opacity-50"
+            style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+            }}
           >
-            <span className="text-2xl">‹</span>
-          </Button>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
 
-          {/* Indicators */}
-          <div className="flex gap-3">
-            {services.map((_, index) => (
+          <div className="flex gap-2 items-center">
+            {services.map((service, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                disabled={isRotating}
-                className={cn(
-                  "h-3 rounded-full transition-all duration-300",
-                  index === currentIndex 
-                    ? "w-8 bg-primary shadow-lg" 
-                    : "w-3 bg-muted-foreground/40 hover:bg-muted-foreground/60"
-                )}
-                style={index === currentIndex ? {
-                  background: `linear-gradient(135deg, ${services[currentIndex].gradient[0]}, ${services[currentIndex].gradient[1]})`,
-                  boxShadow: `0 5px 15px ${services[currentIndex].color}40`
-                } : undefined}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className="h-2 rounded-full transition-all duration-500"
+                style={{
+                  width: index === currentIndex ? '40px' : '8px',
+                  background: index === currentIndex
+                    ? `linear-gradient(90deg, ${service.gradient[0]}, ${service.gradient[1]})`
+                    : 'rgba(255,255,255,0.2)',
+                  boxShadow: index === currentIndex ? `0 0 20px ${service.accent}` : 'none'
+                }}
               />
             ))}
           </div>
 
-          <Button
-            variant="outline"
-            size="icon"
-            className="h-12 w-12 rounded-full bg-card/80 backdrop-blur-sm border-2 hover:bg-primary hover:text-primary-foreground transition-all"
+          <button
             onClick={() => rotate(1)}
             disabled={isRotating}
+            className="w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-lg transition-all duration-300 hover:scale-110 disabled:opacity-50"
+            style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+            }}
           >
-            <span className="text-2xl">›</span>
-          </Button>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Progress bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 overflow-hidden">
+          <div
+            className="h-full transition-all duration-700"
+            style={{
+              background: `linear-gradient(90deg, ${currentService.gradient[0]}, ${currentService.gradient[1]})`,
+              width: `${((currentIndex + 1) / services.length) * 100}%`,
+              boxShadow: `0 0 20px ${currentService.accent}`
+            }}
+          />
         </div>
       </div>
     </div>
