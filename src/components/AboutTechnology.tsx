@@ -101,16 +101,16 @@ const AboutTechnology = () => {
             </div>
           </div>
           
-          {/* Right side - Interactive visual */}
+          {/* Right side - Compact Interactive visual */}
           <AnimatedSection animation="fade-right" delay={200}>
-            <div className="relative">
-              {/* Main display container */}
+            <div className="relative max-w-sm mx-auto lg:mx-0">
+              {/* Main display container - compact */}
               <div 
-                className="relative aspect-square rounded-3xl overflow-hidden"
+                className="relative aspect-square max-w-[280px] mx-auto rounded-2xl overflow-hidden"
                 style={{
                   background: 'linear-gradient(135deg, hsl(var(--card)), hsl(var(--background)))',
                   border: '1px solid hsl(var(--border))',
-                  boxShadow: '0 40px 80px hsl(var(--primary) / 0.1), inset 0 0 60px hsl(var(--primary) / 0.05)',
+                  boxShadow: '0 20px 40px hsl(var(--primary) / 0.1), inset 0 0 30px hsl(var(--primary) / 0.05)',
                 }}
               >
                 {/* Tech grid */}
@@ -121,69 +121,85 @@ const AboutTechnology = () => {
                       linear-gradient(hsl(var(--primary) / 0.2) 1px, transparent 1px),
                       linear-gradient(90deg, hsl(var(--primary) / 0.2) 1px, transparent 1px)
                     `,
-                    backgroundSize: '30px 30px',
+                    backgroundSize: '20px 20px',
                   }}
                 />
                 
                 {/* Central laser visualization */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative">
+                  <div className="relative w-32 h-32">
                     {/* Outer ring */}
                     <div 
-                      className="w-48 h-48 rounded-full border-2 border-primary/30"
-                      style={{ animation: 'spin 20s linear infinite' }}
+                      className="absolute inset-0 rounded-full border-2 border-primary/30 animate-[spin_20s_linear_infinite]"
                     />
                     
                     {/* Middle ring */}
                     <div 
-                      className="absolute top-4 left-4 w-40 h-40 rounded-full border-2 border-accent/40"
-                      style={{ animation: 'spin 15s linear infinite reverse' }}
+                      className="absolute inset-3 rounded-full border-2 border-accent/40 animate-[spin_15s_linear_infinite_reverse]"
                     />
                     
                     {/* Inner core */}
                     <div 
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full"
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary animate-pulse"
                       style={{
-                        background: 'radial-gradient(circle, hsl(var(--primary)), hsl(var(--primary) / 0.3))',
-                        boxShadow: '0 0 60px hsl(var(--primary)), 0 0 100px hsl(var(--primary) / 0.5)',
-                        animation: 'pulse 2s ease-in-out infinite',
+                        boxShadow: '0 0 30px hsl(var(--primary)), 0 0 60px hsl(var(--primary) / 0.5)',
                       }}
                     />
                     
-                    {/* Laser beam */}
-                    <div 
-                      className="absolute top-1/2 left-1/2 w-1 h-32 -translate-x-1/2"
-                      style={{
-                        background: 'linear-gradient(to bottom, hsl(var(--primary)), transparent)',
-                        boxShadow: '0 0 20px hsl(var(--primary))',
-                        transformOrigin: 'top center',
-                        animation: 'laserRotate 3s linear infinite',
-                      }}
-                    />
+                    {/* Rotating laser beams */}
+                    <div className="absolute inset-0 animate-[spin_3s_linear_infinite]">
+                      <div 
+                        className="absolute top-1/2 left-1/2 w-0.5 h-16 -translate-x-1/2 origin-top"
+                        style={{
+                          background: 'linear-gradient(to bottom, hsl(var(--primary)), transparent)',
+                          boxShadow: '0 0 10px hsl(var(--primary))',
+                        }}
+                      />
+                      <div 
+                        className="absolute top-1/2 left-1/2 w-0.5 h-16 -translate-x-1/2 origin-top rotate-90"
+                        style={{
+                          background: 'linear-gradient(to bottom, hsl(var(--accent)), transparent)',
+                          boxShadow: '0 0 10px hsl(var(--accent))',
+                        }}
+                      />
+                      <div 
+                        className="absolute top-1/2 left-1/2 w-0.5 h-16 -translate-x-1/2 origin-top rotate-180"
+                        style={{
+                          background: 'linear-gradient(to bottom, hsl(var(--primary)), transparent)',
+                          boxShadow: '0 0 10px hsl(var(--primary))',
+                        }}
+                      />
+                      <div 
+                        className="absolute top-1/2 left-1/2 w-0.5 h-16 -translate-x-1/2 origin-top -rotate-90"
+                        style={{
+                          background: 'linear-gradient(to bottom, hsl(var(--accent)), transparent)',
+                          boxShadow: '0 0 10px hsl(var(--accent))',
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
                 
                 {/* Status indicators */}
-                <div className="absolute bottom-4 left-4 right-4 flex justify-between text-xs font-mono">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-primary">SYS.STATUS: ONLINE</span>
+                <div className="absolute bottom-3 left-3 right-3 flex justify-between text-[10px] font-mono">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    <span className="text-primary">ONLINE</span>
                   </div>
-                  <span className="text-muted-foreground">PWR: 6000W</span>
+                  <span className="text-muted-foreground">6000W</span>
                 </div>
                 
                 {/* Scanning line */}
                 <div 
-                  className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"
-                  style={{ animation: 'scanVertical 3s linear infinite' }}
+                  className="absolute left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-60 animate-[scanY_3s_linear_infinite]"
                 />
               </div>
               
               {/* Corner decorations */}
-              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-primary" />
-              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-primary" />
-              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-primary" />
-              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-primary" />
+              <div className="absolute -top-1.5 -left-1.5 w-4 h-4 border-t-2 border-l-2 border-primary rounded-tl" />
+              <div className="absolute -top-1.5 -right-1.5 w-4 h-4 border-t-2 border-r-2 border-primary rounded-tr" />
+              <div className="absolute -bottom-1.5 -left-1.5 w-4 h-4 border-b-2 border-l-2 border-primary rounded-bl" />
+              <div className="absolute -bottom-1.5 -right-1.5 w-4 h-4 border-b-2 border-r-2 border-primary rounded-br" />
             </div>
           </AnimatedSection>
         </div>
@@ -196,22 +212,7 @@ const AboutTechnology = () => {
           100% { transform: translateX(100%) translateY(100%); opacity: 0; }
         }
         
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        @keyframes pulse {
-          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-          50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
-        }
-        
-        @keyframes laserRotate {
-          from { transform: translateX(-50%) rotate(0deg); }
-          to { transform: translateX(-50%) rotate(360deg); }
-        }
-        
-        @keyframes scanVertical {
+        @keyframes scanY {
           0% { top: 0; }
           100% { top: 100%; }
         }
