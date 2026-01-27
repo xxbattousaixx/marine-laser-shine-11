@@ -64,7 +64,13 @@ const translations = {
     
     // Carousel
     'carousel.title': 'Servicios de Limpieza Láser Industrial',
-    'carousel.subtitle': 'Soluciones B2B para manufactura pesada, marítima, energía e infraestructura',
+    'carousel.subtitle': 'Tecnología de preparación de superficies de próxima generación para la industria pesada',
+    'carousel.header.industrial': 'Soluciones',
+    'carousel.header.laser': 'Láser',
+    'carousel.header.solutions': 'Industriales',
+    'carousel.tag.eco': 'Ecológico',
+    'carousel.tag.zero': 'Cero Residuos',
+    'carousel.tag.precision': 'Precisión',
     
     // Gallery
     'gallery.title': 'Galería de Trabajos',
@@ -276,7 +282,13 @@ const translations = {
     
     // Carousel
     'carousel.title': 'Industrial Laser Cleaning Services',
-    'carousel.subtitle': 'B2B solutions for heavy manufacturing, maritime, energy, and infrastructure',
+    'carousel.subtitle': 'Next-generation surface preparation technology for heavy industry',
+    'carousel.header.industrial': 'Industrial',
+    'carousel.header.laser': 'Laser',
+    'carousel.header.solutions': 'Solutions',
+    'carousel.tag.eco': 'Eco-Friendly',
+    'carousel.tag.zero': 'Zero Waste',
+    'carousel.tag.precision': 'Precision',
     
     // Gallery
     'gallery.title': 'Work Gallery',
@@ -486,7 +498,13 @@ const translations = {
     
     // Carousel
     'carousel.title': '工业激光清洁服务',
-    'carousel.subtitle': '重型制造、海事、能源和基础设施的B2B解决方案',
+    'carousel.subtitle': '重型工业的新一代表面处理技术',
+    'carousel.header.industrial': '工业',
+    'carousel.header.laser': '激光',
+    'carousel.header.solutions': '解决方案',
+    'carousel.tag.eco': '环保',
+    'carousel.tag.zero': '零废物',
+    'carousel.tag.precision': '精密',
     
     // Gallery
     'gallery.title': '作品展示',
