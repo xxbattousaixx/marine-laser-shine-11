@@ -62,6 +62,10 @@ const translations = {
     'services.coating.title': 'Recubrimiento de Pintura',
     'services.coating.desc': 'Servicios completos de recubrimiento de pintura complementarios a la limpieza láser. Aplicación profesional de pinturas industriales, anticorrosivas y epóxicas para máxima protección después de la preparación láser.',
     
+    // Carousel
+    'carousel.title': 'Servicios de Limpieza Láser Industrial',
+    'carousel.subtitle': 'Soluciones B2B para manufactura pesada, marítima, energía e infraestructura',
+    
     // Gallery
     'gallery.title': 'Galería de Trabajos',
     'gallery.subtitle': 'Vea la calidad de nuestro trabajo',
@@ -270,6 +274,10 @@ const translations = {
     'services.coating.title': 'Paint Coating',
     'services.coating.desc': 'Complete paint coating services complementary to laser cleaning. Professional application of industrial, anti-corrosive, and epoxy paints for maximum protection after laser preparation.',
     
+    // Carousel
+    'carousel.title': 'Industrial Laser Cleaning Services',
+    'carousel.subtitle': 'B2B solutions for heavy manufacturing, maritime, energy, and infrastructure',
+    
     // Gallery
     'gallery.title': 'Work Gallery',
     'gallery.subtitle': 'See the quality of our work',
@@ -475,6 +483,10 @@ const translations = {
     'services.parts.desc': '为任何尺寸的工业部件提供清洁服务。精确的结果，不会损坏零件。',
     'services.coating.title': '油漆涂层',
     'services.coating.desc': '激光清洁后的完整油漆涂层服务。专业应用工业、防腐和环氧涂料，提供激光处理后的最大保护。',
+    
+    // Carousel
+    'carousel.title': '工业激光清洁服务',
+    'carousel.subtitle': '重型制造、海事、能源和基础设施的B2B解决方案',
     
     // Gallery
     'gallery.title': '作品展示',
