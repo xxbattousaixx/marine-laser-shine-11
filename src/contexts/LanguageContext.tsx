@@ -34,19 +34,68 @@ const translations = {
     'home.power.title': 'Potencia Industrial de 6000W',
     'home.power.desc': 'Equipo de alta potencia para aplicaciones industriales pesadas y proyectos de gran escala',
     
-    // About
-    'about.title': 'Sobre Nosotros',
-    'about.subtitle': 'Proveedores especializados de servicios de limpieza láser industrial',
-    'about.intro': 'Operamos un sistema láser de limpieza de óxido de 6000W de alta potencia, ofreciendo servicios de preparación de superficies de nivel industrial para manufactura pesada, marítima, energía y sectores aeroespaciales. Nuestro equipo de Clase 4 maneja proyectos de gran escala donde el tiempo de inactividad del cliente es crítico.',
-    'about.mission.title': 'Nuestra Tecnología',
-    'about.mission.desc': 'Sistema láser de 6000W para aplicaciones industriales pesadas. Limpieza rápida de grandes áreas con cero daño al sustrato, sin medios abrasivos y sin residuos químicos. Operación remota para entornos peligrosos.',
-    'about.vision.title': 'Modelo de Negocio',
-    'about.vision.desc': 'Proveedor de servicios B2B ofreciendo contratos móviles, por proyecto y de mantenimiento. Nos especializamos en educación del mercado sobre las ventajas económicas y ambientales sobre métodos tradicionales.',
-    'about.values.title': 'Ventajas Clave',
-    'about.values.quality': 'Sin Desperdicio',
-    'about.values.innovation': 'Más Rápido',
-    'about.values.commitment': 'Seguro',
-    'about.values.safety': 'Preciso',
+    // About - Hero Section
+    'about.hero.badge': 'Tecnología de Vanguardia',
+    'about.hero.preTitle': 'SOBRE',
+    'about.hero.title': 'NOSOTROS',
+    'about.hero.subtitle': 'Expertos en limpieza láser industrial de alta potencia. Transformando industrias con precisión fotónica.',
+    'about.hero.cta1': 'Descubre Nuestra Tecnología',
+    'about.hero.cta2': 'Ver Proyectos',
+    
+    // About - Stats Section
+    'about.stats.title': 'Especificaciones Técnicas',
+    'about.stats.subtitle': 'Tecnología de limpieza láser de clase mundial para aplicaciones industriales exigentes',
+    'about.stats.power.label': 'Potencia Láser',
+    'about.stats.power.desc': 'Sistema de alta potencia para aplicaciones industriales pesadas',
+    'about.stats.damage.label': 'Daño al Sustrato',
+    'about.stats.damage.desc': 'Limpieza precisa sin afectar la integridad del material base',
+    'about.stats.efficiency.label': 'Eficiencia',
+    'about.stats.efficiency.desc': 'Operación remota para entornos peligrosos y de difícil acceso',
+    
+    // About - Technology Section
+    'about.tech.title': 'Nuestra Tecnología',
+    'about.tech.feature1.title': 'Sistema Láser 6000W',
+    'about.tech.feature1.desc': 'Tecnología de punta para limpieza industrial de alta intensidad. Capaz de remover óxido, pintura y contaminantes sin esfuerzo.',
+    'about.tech.feature2.title': 'Cero Residuos Químicos',
+    'about.tech.feature2.desc': 'Proceso 100% ecológico. Sin medios abrasivos, sin químicos nocivos, solo energía láser pura y precisa.',
+    'about.tech.feature3.title': 'Operación Remota Clase 4',
+    'about.tech.feature3.desc': 'Control avanzado para entornos peligrosos. Nuestro equipo especializado maneja proyectos de gran escala con seguridad total.',
+    
+    // About - Business Model Section
+    'about.business.title': 'Modelo de Negocio',
+    'about.business.subtitle': 'Proveedores B2B especializados en soluciones móviles y proyectos a medida para industrias exigentes',
+    'about.business.model1.title': 'Servicios Móviles',
+    'about.business.model1.desc': 'Equipos portátiles de alta potencia que llegamos a tu instalación. Ideal para mantenimiento de flotas y estructuras fijas.',
+    'about.business.model1.feature1': 'Respuesta rápida 24/7',
+    'about.business.model1.feature2': 'Equipos transportables',
+    'about.business.model1.feature3': 'Cobertura nacional',
+    'about.business.model2.title': 'Proyectos por Contrato',
+    'about.business.model2.desc': 'Soluciones específicas para limpieza industrial de gran escala. Desde preparación de superficies hasta remoción de recubrimientos.',
+    'about.business.model2.feature1': 'Presupuestos detallados',
+    'about.business.model2.feature2': 'Planificación flexible',
+    'about.business.model2.feature3': 'Garantía de calidad',
+    'about.business.model3.title': 'Mantenimiento Programado',
+    'about.business.model3.desc': 'Contratos de mantenimiento preventivo para industrias marítimas, energía y manufactura pesada.',
+    'about.business.model3.feature1': 'Reducción de downtime',
+    'about.business.model3.feature2': 'Reportes periódicos',
+    'about.business.model3.feature3': 'Soporte técnico continuo',
+    
+    // About - Sectors Section
+    'about.sectors.title': 'Sectores que Servimos',
+    'about.sectors.manufacturing': 'Manufactura Pesada',
+    'about.sectors.energy': 'Energía',
+    'about.sectors.aerospace': 'Aeroespacial',
+    'about.sectors.maritime': 'Marítimo',
+    
+    // About - Location Section
+    'about.location.title': 'Ubicación Estratégica',
+    'about.location.description': 'Centro de operaciones estratégicamente ubicado para servir a la industria petrolera, marítima y manufacturera de la región zuliana y todo el territorio nacional.',
+    
+    // About - CTA Section
+    'about.cta.title': '¿Listo para la Revolución Láser?',
+    'about.cta.description': 'Contáctanos hoy y descubre cómo nuestra tecnología de limpieza láser de 6000W puede transformar tus operaciones industriales.',
+    'about.cta.button1': 'Solicitar Cotización',
+    'about.cta.button2': 'Ver Demo Virtual',
     
     // Services
     'services.title': 'Servicios Industriales de Limpieza Láser',
@@ -252,19 +301,68 @@ const translations = {
     'home.power.title': '6000W Industrial Power',
     'home.power.desc': 'High-power equipment for heavy-duty industrial applications and large-scale projects',
     
-    // About
-    'about.title': 'About Us',
-    'about.subtitle': 'Specialized industrial laser cleaning service providers',
-    'about.intro': 'We operate a high-power 6000W rust cleaning laser system, offering industrial-grade surface preparation services for heavy manufacturing, maritime, energy, and aerospace sectors. Our Class 4 equipment handles large-scale projects where client downtime is critical.',
-    'about.mission.title': 'Our Technology',
-    'about.mission.desc': '6000W laser system for heavy-duty industrial applications. Fast cleaning of large areas with zero substrate damage, no abrasive media, and no chemical waste. Remote operation for hazardous environments.',
-    'about.vision.title': 'Business Model',
-    'about.vision.desc': 'B2B service provider offering mobile, per-project, and maintenance contracts. We specialize in market education about economic and environmental advantages over traditional methods.',
-    'about.values.title': 'Key Advantages',
-    'about.values.quality': 'No Waste',
-    'about.values.innovation': 'Faster',
-    'about.values.commitment': 'Safe',
-    'about.values.safety': 'Precise',
+    // About - Hero Section
+    'about.hero.badge': 'Cutting-Edge Technology',
+    'about.hero.preTitle': 'ABOUT',
+    'about.hero.title': 'US',
+    'about.hero.subtitle': 'Experts in high-power industrial laser cleaning. Transforming industries with photonic precision.',
+    'about.hero.cta1': 'Discover Our Technology',
+    'about.hero.cta2': 'View Projects',
+    
+    // About - Stats Section
+    'about.stats.title': 'Technical Specifications',
+    'about.stats.subtitle': 'World-class laser cleaning technology for demanding industrial applications',
+    'about.stats.power.label': 'Laser Power',
+    'about.stats.power.desc': 'High-power system for heavy-duty industrial applications',
+    'about.stats.damage.label': 'Substrate Damage',
+    'about.stats.damage.desc': 'Precise cleaning without affecting base material integrity',
+    'about.stats.efficiency.label': 'Efficiency',
+    'about.stats.efficiency.desc': 'Remote operation for hazardous and hard-to-reach environments',
+    
+    // About - Technology Section
+    'about.tech.title': 'Our Technology',
+    'about.tech.feature1.title': '6000W Laser System',
+    'about.tech.feature1.desc': 'State-of-the-art technology for high-intensity industrial cleaning. Capable of removing rust, paint, and contaminants effortlessly.',
+    'about.tech.feature2.title': 'Zero Chemical Waste',
+    'about.tech.feature2.desc': '100% eco-friendly process. No abrasive media, no harmful chemicals, just pure and precise laser energy.',
+    'about.tech.feature3.title': 'Class 4 Remote Operation',
+    'about.tech.feature3.desc': 'Advanced control for hazardous environments. Our specialized team handles large-scale projects with total safety.',
+    
+    // About - Business Model Section
+    'about.business.title': 'Business Model',
+    'about.business.subtitle': 'Specialized B2B providers of mobile solutions and custom projects for demanding industries',
+    'about.business.model1.title': 'Mobile Services',
+    'about.business.model1.desc': 'High-power portable equipment that comes to your facility. Ideal for fleet maintenance and fixed structures.',
+    'about.business.model1.feature1': '24/7 rapid response',
+    'about.business.model1.feature2': 'Transportable equipment',
+    'about.business.model1.feature3': 'National coverage',
+    'about.business.model2.title': 'Contract Projects',
+    'about.business.model2.desc': 'Specific solutions for large-scale industrial cleaning. From surface preparation to coating removal.',
+    'about.business.model2.feature1': 'Detailed quotes',
+    'about.business.model2.feature2': 'Flexible planning',
+    'about.business.model2.feature3': 'Quality guarantee',
+    'about.business.model3.title': 'Scheduled Maintenance',
+    'about.business.model3.desc': 'Preventive maintenance contracts for maritime, energy, and heavy manufacturing industries.',
+    'about.business.model3.feature1': 'Downtime reduction',
+    'about.business.model3.feature2': 'Periodic reports',
+    'about.business.model3.feature3': 'Continuous technical support',
+    
+    // About - Sectors Section
+    'about.sectors.title': 'Sectors We Serve',
+    'about.sectors.manufacturing': 'Heavy Manufacturing',
+    'about.sectors.energy': 'Energy',
+    'about.sectors.aerospace': 'Aerospace',
+    'about.sectors.maritime': 'Maritime',
+    
+    // About - Location Section
+    'about.location.title': 'Strategic Location',
+    'about.location.description': 'Operations center strategically located to serve the oil, maritime, and manufacturing industry of the Zulia region and the entire national territory.',
+    
+    // About - CTA Section
+    'about.cta.title': 'Ready for the Laser Revolution?',
+    'about.cta.description': 'Contact us today and discover how our 6000W laser cleaning technology can transform your industrial operations.',
+    'about.cta.button1': 'Request Quote',
+    'about.cta.button2': 'View Virtual Demo',
     
     // Services
     'services.title': 'Industrial Laser Cleaning Services',
@@ -468,19 +566,68 @@ const translations = {
     'home.features.versatile.title': '多功能',
     'home.features.versatile.desc': '适用于所有类型的表面和材料',
     
-    // About
-    'about.title': '关于我们',
-    'about.subtitle': '拥有多年经验的激光清洁专家',
-    'about.intro': '我们是委内瑞拉卡比马斯苏利亚州激光清洁服务的领导者。专注于石油行业，我们提供创新高效的清洁解决方案。',
-    'about.mission.title': '我们的使命',
-    'about.mission.desc': '提供最高质量的激光清洁服务，确保客户满意和环境保护。',
-    'about.vision.title': '我们的愿景',
-    'about.vision.desc': '成为委内瑞拉领先的激光清洁服务公司，并将我们的服务扩展到国际。',
-    'about.values.title': '我们的价值观',
-    'about.values.quality': '质量',
-    'about.values.innovation': '创新',
-    'about.values.commitment': '承诺',
-    'about.values.safety': '安全',
+    // About - Hero Section
+    'about.hero.badge': '尖端技术',
+    'about.hero.preTitle': '关于',
+    'about.hero.title': '我们',
+    'about.hero.subtitle': '高功率工业激光清洁专家。以光子精度改变行业。',
+    'about.hero.cta1': '了解我们的技术',
+    'about.hero.cta2': '查看项目',
+    
+    // About - Stats Section
+    'about.stats.title': '技术规格',
+    'about.stats.subtitle': '世界一流的激光清洁技术，满足苛刻的工业应用需求',
+    'about.stats.power.label': '激光功率',
+    'about.stats.power.desc': '用于重型工业应用的高功率系统',
+    'about.stats.damage.label': '基材损伤',
+    'about.stats.damage.desc': '精确清洁，不影响基材完整性',
+    'about.stats.efficiency.label': '效率',
+    'about.stats.efficiency.desc': '用于危险和难以到达环境的远程操作',
+    
+    // About - Technology Section
+    'about.tech.title': '我们的技术',
+    'about.tech.feature1.title': '6000W激光系统',
+    'about.tech.feature1.desc': '用于高强度工业清洁的尖端技术。能够轻松去除锈迹、油漆和污染物。',
+    'about.tech.feature2.title': '零化学废物',
+    'about.tech.feature2.desc': '100%环保工艺。没有研磨介质，没有有害化学物质，只有纯净精确的激光能量。',
+    'about.tech.feature3.title': '4级远程操作',
+    'about.tech.feature3.desc': '用于危险环境的高级控制。我们的专业团队以完全安全的方式处理大型项目。',
+    
+    // About - Business Model Section
+    'about.business.title': '商业模式',
+    'about.business.subtitle': '专业的B2B供应商，为苛刻行业提供移动解决方案和定制项目',
+    'about.business.model1.title': '移动服务',
+    'about.business.model1.desc': '来到您设施的高功率便携式设备。非常适合车队维护和固定结构。',
+    'about.business.model1.feature1': '24/7快速响应',
+    'about.business.model1.feature2': '可运输设备',
+    'about.business.model1.feature3': '全国覆盖',
+    'about.business.model2.title': '合同项目',
+    'about.business.model2.desc': '大规模工业清洁的特定解决方案。从表面处理到涂层去除。',
+    'about.business.model2.feature1': '详细报价',
+    'about.business.model2.feature2': '灵活规划',
+    'about.business.model2.feature3': '质量保证',
+    'about.business.model3.title': '预定维护',
+    'about.business.model3.desc': '为海事、能源和重型制造业提供预防性维护合同。',
+    'about.business.model3.feature1': '减少停机时间',
+    'about.business.model3.feature2': '定期报告',
+    'about.business.model3.feature3': '持续技术支持',
+    
+    // About - Sectors Section
+    'about.sectors.title': '我们服务的行业',
+    'about.sectors.manufacturing': '重型制造',
+    'about.sectors.energy': '能源',
+    'about.sectors.aerospace': '航空航天',
+    'about.sectors.maritime': '海事',
+    
+    // About - Location Section
+    'about.location.title': '战略位置',
+    'about.location.description': '运营中心位于战略位置，为苏利亚地区和整个国家领土的石油、海事和制造业提供服务。',
+    
+    // About - CTA Section
+    'about.cta.title': '准备好迎接激光革命了吗？',
+    'about.cta.description': '立即联系我们，了解我们的6000W激光清洁技术如何改变您的工业运营。',
+    'about.cta.button1': '索取报价',
+    'about.cta.button2': '查看虚拟演示',
     
     // Services
     'services.title': '我们的服务',
