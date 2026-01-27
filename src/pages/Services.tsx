@@ -7,6 +7,7 @@ import { Ship, Cog, Droplet, Package, Paintbrush } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingVideo from "@/components/FloatingVideo";
+import MarineServicesCarousel from "@/components/MarineServicesCarousel";
 
 const Services = () => {
   const { t, language } = useLanguage();
@@ -108,7 +109,13 @@ const Services = () => {
             </div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* 3D Carousel Section */}
+          <AnimatedSection animation="scale" delay={100}>
+            <MarineServicesCarousel />
+          </AnimatedSection>
+
+          {/* Service Cards Grid */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mt-16">
             {services.map((service, index) => (
               <AnimatedSection 
                 key={index} 
