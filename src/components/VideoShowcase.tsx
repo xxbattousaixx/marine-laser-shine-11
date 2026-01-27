@@ -13,7 +13,7 @@ const VideoShowcase = ({ className = "" }: VideoShowcaseProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const videoId = "vrk9-LOr7cs";
+  const videoId = "eFoq5Yx9uv4";
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
   return (
@@ -23,10 +23,10 @@ const VideoShowcase = ({ className = "" }: VideoShowcaseProps) => {
           <AnimatedSection animation="fade-up">
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-                6000W Laser Cleaning
+                {t('home.video.title')}
               </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Experience industrial-grade rust removal with an average cleaning rate of 20m² per hour. Our 6000W system delivers precision cleaning for marine vessels, heavy machinery, and industrial equipment — chemical-free and surface-safe.
+              {t('home.video.description')}
             </p>
             </div>
           </AnimatedSection>
@@ -51,7 +51,7 @@ const VideoShowcase = ({ className = "" }: VideoShowcaseProps) => {
                   </div>
                   <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span className="text-white/80 text-sm bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
-                      6000W Laser Cleaning
+                      {t('home.video.title')}
                     </span>
                     <button
                       onClick={() => setIsModalOpen(true)}
@@ -82,7 +82,7 @@ const VideoShowcase = ({ className = "" }: VideoShowcaseProps) => {
                   </div>
                   <iframe
                     src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
-                    title="6000W Laser Cleaning"
+                    title={t('home.video.title')}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full"
@@ -98,7 +98,7 @@ const VideoShowcase = ({ className = "" }: VideoShowcaseProps) => {
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
         videoId={videoId}
-        title="6000W Laser Cleaning"
+        title={t('home.video.title')}
       />
     </>
   );

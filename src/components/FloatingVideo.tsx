@@ -8,7 +8,7 @@ const FloatingVideo = () => {
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const videoId = "vrk9-LOr7cs";
+  const videoId = "eFoq5Yx9uv4";
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
 
   // Show floating video after user scrolls a bit
