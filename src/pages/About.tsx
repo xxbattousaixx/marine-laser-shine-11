@@ -45,10 +45,15 @@ const About = () => {
         <meta property="og:description" content={t('seo.about.description')} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://marinelaserclean.com/about" />
+        <meta property="og:image" content="https://marinelaserclean.com/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Marine Laser Clean" />
         
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={t('seo.about.title')} />
         <meta name="twitter:description" content={t('seo.about.description')} />
+        <meta name="twitter:image" content="https://marinelaserclean.com/og-image.png" />
         
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
