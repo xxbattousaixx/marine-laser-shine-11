@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet-async";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -12,32 +11,13 @@ import MarineServicesCarousel from "@/components/MarineServicesCarousel";
 const Services = () => {
   const { t, language } = useLanguage();
 
+  // Services data for structured data (SEO)
   const services = [
-    {
-      icon: Ship,
-      title: t('services.ship.title'),
-      description: t('services.ship.desc'),
-    },
-    {
-      icon: Cog,
-      title: t('services.machinery.title'),
-      description: t('services.machinery.desc'),
-    },
-    {
-      icon: Droplet,
-      title: t('services.rust.title'),
-      description: t('services.rust.desc'),
-    },
-    {
-      icon: Package,
-      title: t('services.parts.title'),
-      description: t('services.parts.desc'),
-    },
-    {
-      icon: Paintbrush,
-      title: t('services.coating.title'),
-      description: t('services.coating.desc'),
-    },
+    { title: t('services.ship.title'), description: t('services.ship.desc') },
+    { title: t('services.machinery.title'), description: t('services.machinery.desc') },
+    { title: t('services.rust.title'), description: t('services.rust.desc') },
+    { title: t('services.parts.title'), description: t('services.parts.desc') },
+    { title: t('services.coating.title'), description: t('services.coating.desc') },
   ];
 
   const structuredData = {
@@ -93,58 +73,20 @@ const Services = () => {
       </Helmet>
       
       <div className="min-h-screen flex flex-col relative">
-      <ParticleBackground variant="services" />
-      <Navigation />
-      
-      <main className="flex-grow pt-24 pb-12 relative z-10">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fade-up">
-            <div className="text-center mb-12">
-              <h1 className="text-5xl font-bold mb-4 text-foreground">
-                {t('services.title')}
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                {t('services.subtitle')}
-              </p>
-            </div>
-          </AnimatedSection>
-
-          {/* 3D Carousel Section */}
-          <AnimatedSection animation="scale" delay={100}>
-            <MarineServicesCarousel />
-          </AnimatedSection>
-
-          {/* Service Cards Grid */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mt-16">
-            {services.map((service, index) => (
-              <AnimatedSection 
-                key={index} 
-                animation={index % 2 === 0 ? 'fade-left' : 'fade-right'}
-                delay={index * 150}
-              >
-                <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 backdrop-blur-sm bg-background/80 h-full">
-                  <CardHeader>
-                    <div className="mb-4">
-                      <div className="p-4 bg-primary/10 rounded-full inline-block transition-transform duration-300 hover:scale-110 hover:rotate-3">
-                        <service.icon className="h-10 w-10 text-primary" />
-                      </div>
-                    </div>
-                    <CardTitle className="text-2xl">{service.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-base">
-                      {service.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
-            ))}
+        <ParticleBackground variant="services" />
+        <Navigation />
+        
+        <main className="flex-grow pt-24 pb-12 relative z-10">
+          <div className="container mx-auto px-4">
+            {/* 3D Carousel Section - Main Feature */}
+            <AnimatedSection animation="scale" delay={100}>
+              <MarineServicesCarousel />
+            </AnimatedSection>
           </div>
-        </div>
-      </main>
+        </main>
 
-      <FloatingVideo />
-      <Footer />
+        <FloatingVideo />
+        <Footer />
       </div>
     </>
   );
