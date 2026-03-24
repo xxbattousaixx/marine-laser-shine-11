@@ -151,7 +151,7 @@ const translations = {
     
     // SEO Meta Tags
     'seo.home.title': 'Marine Laser Clean | Limpieza Láser Industrial 6000W en Venezuela',
-    'seo.home.description': 'Servicios profesionales de limpieza láser industrial con equipo de 6000W. Remoción de óxido, preparación de superficies para soldadura, limpieza marítima y más. Cabimas, Zulia, Venezuela.',
+    'seo.home.description': 'Limpieza láser industrial 6000W en Venezuela. Remoción de óxido, preparación de superficies y limpieza marítima. Cabimas, Zulia.',
     'seo.about.title': 'Sobre Nosotros | Marine Laser Clean - Expertos en Limpieza Láser',
     'seo.about.description': 'Conozca nuestra tecnología de limpieza láser de 6000W. Proveedores especializados de servicios B2B para industria marítima, manufactura, energía y aeroespacial.',
     'seo.services.title': 'Servicios de Limpieza Láser Industrial | Marine Laser Clean',
