@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://marinelaserclean.com/sitemap.xml
+Sitemap: https://www.marinelaserclean.com/sitemap.xml
 
 # Allow specific crawlers
 User-agent: Googlebot
