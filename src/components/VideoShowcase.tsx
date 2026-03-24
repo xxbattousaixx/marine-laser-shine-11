@@ -14,7 +14,8 @@ const VideoShowcase = ({ className = "" }: VideoShowcaseProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   const videoId = "eFoq5Yx9uv4";
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  // Use mqdefault (320x180) instead of maxresdefault (1280x720) for faster load
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
 
   return (
     <>
@@ -39,6 +40,9 @@ const VideoShowcase = ({ className = "" }: VideoShowcaseProps) => {
                     src={thumbnailUrl} 
                     alt="6000W Laser Cleaning Demo"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    width="640"
+                    height="360"
                   />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-all duration-300 group-hover:bg-black/30">
                     <button
@@ -86,6 +90,7 @@ const VideoShowcase = ({ className = "" }: VideoShowcaseProps) => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="w-full h-full"
+                    loading="lazy"
                   />
                 </div>
               )}

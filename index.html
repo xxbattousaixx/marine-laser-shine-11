@@ -9,6 +9,11 @@
     <meta name="author" content="Marine Laser Clean" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://www.youtube.com" />
+    <link rel="preconnect" href="https://img.youtube.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.marinelaserclean.com/" />
@@ -37,6 +42,9 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-12CFJMDN3F');
+    gtag('config', 'G-12CFJMDN3F', { send_page_view: false });
+    window.addEventListener('load', function() {
+      gtag('event', 'page_view');
+    });
   </script>
 </html>
