@@ -56,12 +56,12 @@ const Services = () => {
         <html lang={language} />
         <title>{t('seo.services.title')}</title>
         <meta name="description" content={t('seo.services.description')} />
-        <link rel="canonical" href="https://marinelaserclean.com/services" />
+        <link rel="canonical" href="https://www.marinelaserclean.com/services" />
         
         <meta property="og:title" content={t('seo.services.title')} />
         <meta property="og:description" content={t('seo.services.description')} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://marinelaserclean.com/services" />
+        <meta property="og:url" content="https://www.marinelaserclean.com/services" />
         
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={t('seo.services.title')} />

@@ -20,7 +20,7 @@ const About = () => {
     "@type": "Organization",
     "name": "Marine Laser Clean",
     "description": t('seo.about.description'),
-    "url": "https://marinelaserclean.com/about",
+    "url": "https://www.marinelaserclean.com/about",
     "foundingLocation": {
       "@type": "Place",
       "address": {
@@ -39,13 +39,13 @@ const About = () => {
         <html lang={language} />
         <title>{t('seo.about.title')}</title>
         <meta name="description" content={t('seo.about.description')} />
-        <link rel="canonical" href="https://marinelaserclean.com/about" />
+        <link rel="canonical" href="https://www.marinelaserclean.com/about" />
         
         <meta property="og:title" content={t('seo.about.title')} />
         <meta property="og:description" content={t('seo.about.description')} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://marinelaserclean.com/about" />
-        <meta property="og:image" content="https://marinelaserclean.com/og-image.png" />
+        <meta property="og:url" content="https://www.marinelaserclean.com/about" />
+        <meta property="og:image" content="https://www.marinelaserclean.com/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="Marine Laser Clean" />
@@ -53,7 +53,7 @@ const About = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={t('seo.about.title')} />
         <meta name="twitter:description" content={t('seo.about.description')} />
-        <meta name="twitter:image" content="https://marinelaserclean.com/og-image.png" />
+        <meta name="twitter:image" content="https://www.marinelaserclean.com/og-image.png" />
         
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}

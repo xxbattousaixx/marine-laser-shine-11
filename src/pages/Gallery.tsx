@@ -41,7 +41,7 @@ const Gallery = () => {
     "@type": "ImageGallery",
     "name": t('gallery.title'),
     "description": t('seo.gallery.description'),
-    "url": "https://marinelaserclean.com/gallery",
+    "url": "https://www.marinelaserclean.com/gallery",
     "creator": {
       "@type": "Organization",
       "name": "Marine Laser Clean"
@@ -54,12 +54,12 @@ const Gallery = () => {
         <html lang={language} />
         <title>{t('seo.gallery.title')}</title>
         <meta name="description" content={t('seo.gallery.description')} />
-        <link rel="canonical" href="https://marinelaserclean.com/gallery" />
+        <link rel="canonical" href="https://www.marinelaserclean.com/gallery" />
         
         <meta property="og:title" content={t('seo.gallery.title')} />
         <meta property="og:description" content={t('seo.gallery.description')} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://marinelaserclean.com/gallery" />
+        <meta property="og:url" content="https://www.marinelaserclean.com/gallery" />
         
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={t('seo.gallery.title')} />
