@@ -1,12 +1,13 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { Ship, Cog, Droplet, Package, Paintbrush } from "lucide-react";
-import ParticleBackground from "@/components/ParticleBackground";
 import AnimatedSection from "@/components/AnimatedSection";
-import FloatingVideo from "@/components/FloatingVideo";
-import MarineServicesCarousel from "@/components/MarineServicesCarousel";
+
+const ParticleBackground = lazy(() => import("@/components/ParticleBackground"));
+const FloatingVideo = lazy(() => import("@/components/FloatingVideo"));
+const MarineServicesCarousel = lazy(() => import("@/components/MarineServicesCarousel"));
 
 const Services = () => {
   const { t, language } = useLanguage();

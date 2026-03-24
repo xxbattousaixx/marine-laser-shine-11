@@ -1,16 +1,18 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import ParticleBackground from "@/components/ParticleBackground";
-import FloatingVideo from "@/components/FloatingVideo";
 import AboutHero from "@/components/AboutHero";
 import AboutStats from "@/components/AboutStats";
-import AboutTechnology from "@/components/AboutTechnology";
 import AboutBusinessModel from "@/components/AboutBusinessModel";
 import AboutSectors from "@/components/AboutSectors";
 import AboutLocation from "@/components/AboutLocation";
 import AboutCTA from "@/components/AboutCTA";
+
+const ParticleBackground = lazy(() => import("@/components/ParticleBackground"));
+const FloatingVideo = lazy(() => import("@/components/FloatingVideo"));
+const AboutTechnology = lazy(() => import("@/components/AboutTechnology"));
 
 const About = () => {
   const { t, language } = useLanguage();
