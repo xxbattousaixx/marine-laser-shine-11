@@ -63,20 +63,26 @@ const About = () => {
       </Helmet>
       
       <div className="min-h-screen flex flex-col relative bg-background">
-        <ParticleBackground variant="about" />
+        <Suspense fallback={null}>
+          <ParticleBackground variant="about" />
+        </Suspense>
         <Navigation />
         
         <main className="flex-grow pt-16 relative z-10">
           <AboutHero />
           <AboutStats />
-          <AboutTechnology />
+          <Suspense fallback={<div className="py-20" />}>
+            <AboutTechnology />
+          </Suspense>
           <AboutBusinessModel />
           <AboutSectors />
           <AboutLocation />
           <AboutCTA />
         </main>
 
-        <FloatingVideo />
+        <Suspense fallback={null}>
+          <FloatingVideo />
+        </Suspense>
         <Footer />
       </div>
     </>

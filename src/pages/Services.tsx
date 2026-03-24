@@ -74,19 +74,24 @@ const Services = () => {
       </Helmet>
       
       <div className="min-h-screen flex flex-col relative">
-        <ParticleBackground variant="services" />
+        <Suspense fallback={null}>
+          <ParticleBackground variant="services" />
+        </Suspense>
         <Navigation />
         
         <main className="flex-grow pt-24 pb-12 relative z-10">
           <div className="container mx-auto px-4">
-            {/* 3D Carousel Section - Main Feature */}
-            <AnimatedSection animation="scale" delay={100}>
-              <MarineServicesCarousel />
-            </AnimatedSection>
+            <Suspense fallback={<div className="h-[600px]" />}>
+              <AnimatedSection animation="scale" delay={100}>
+                <MarineServicesCarousel />
+              </AnimatedSection>
+            </Suspense>
           </div>
         </main>
 
-        <FloatingVideo />
+        <Suspense fallback={null}>
+          <FloatingVideo />
+        </Suspense>
         <Footer />
       </div>
     </>
