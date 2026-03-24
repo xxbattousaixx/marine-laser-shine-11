@@ -1,12 +1,14 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Sparkles, Leaf, Clock, Layers, Zap } from "lucide-react";
-import MarineLaserIntro from "@/components/MarineLaserIntro";
 import AnimatedSection from "@/components/AnimatedSection";
-import VideoShowcase from "@/components/VideoShowcase";
+
+const MarineLaserIntro = lazy(() => import("@/components/MarineLaserIntro"));
+const VideoShowcase = lazy(() => import("@/components/VideoShowcase"));
 
 const Home = () => {
   const { t, language } = useLanguage();
@@ -123,11 +125,15 @@ const Home = () => {
       
       {/* 3D Laser Intro Section */}
       <section className="pt-20">
-        <MarineLaserIntro />
+        <Suspense fallback={<div className="h-[80vh] bg-black" />}>
+          <MarineLaserIntro />
+        </Suspense>
       </section>
 
       {/* Video Showcase Section */}
-      <VideoShowcase />
+      <Suspense fallback={<div className="py-16" />}>
+        <VideoShowcase />
+      </Suspense>
 
       {/* Features Section */}
       <section id="features" className="py-20 px-4 bg-gradient-to-b from-background to-background/95">

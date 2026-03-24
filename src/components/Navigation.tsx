@@ -6,7 +6,7 @@ import { NavLink } from "@/components/NavLink";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "@/assets/marine-laser-clean-logo.png";
+import logo from "@/assets/marine-laser-clean-logo.webp";
 
 export const Navigation = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -29,52 +29,16 @@ export const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="Marine Laser Clean Logo" className="h-10 object-contain" />
+            <img src={logo} alt="Marine Laser Clean Logo" className="h-10 object-contain" width="160" height="40" />
           </Link>
           
           <div className="hidden md:flex items-center gap-6">
-            <NavLink 
-              to="/" 
-              className="text-foreground hover:text-primary transition-colors"
-              activeClassName="text-primary font-semibold"
-            >
-              {t('nav.home')}
-            </NavLink>
-            <NavLink 
-              to="/about" 
-              className="text-foreground hover:text-primary transition-colors"
-              activeClassName="text-primary font-semibold"
-            >
-              {t('nav.about')}
-            </NavLink>
-            <NavLink 
-              to="/services" 
-              className="text-foreground hover:text-primary transition-colors"
-              activeClassName="text-primary font-semibold"
-            >
-              {t('nav.services')}
-            </NavLink>
-            <NavLink 
-              to="/gallery" 
-              className="text-foreground hover:text-primary transition-colors"
-              activeClassName="text-primary font-semibold"
-            >
-              {t('nav.gallery')}
-            </NavLink>
-            <NavLink 
-              to="/blog" 
-              className="text-foreground hover:text-primary transition-colors"
-              activeClassName="text-primary font-semibold"
-            >
-              {t('nav.blog')}
-            </NavLink>
-            <NavLink 
-              to="/contact" 
-              className="text-foreground hover:text-primary transition-colors"
-              activeClassName="text-primary font-semibold"
-            >
-              {t('nav.contact')}
-            </NavLink>
+            <NavLink to="/" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">{t('nav.home')}</NavLink>
+            <NavLink to="/about" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">{t('nav.about')}</NavLink>
+            <NavLink to="/services" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">{t('nav.services')}</NavLink>
+            <NavLink to="/gallery" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">{t('nav.gallery')}</NavLink>
+            <NavLink to="/blog" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">{t('nav.blog')}</NavLink>
+            <NavLink to="/contact" className="text-foreground hover:text-primary transition-colors" activeClassName="text-primary font-semibold">{t('nav.contact')}</NavLink>
           </div>
 
           <div className="flex items-center gap-2">
@@ -103,54 +67,12 @@ export const Navigation = () => {
                     <ThemeToggle />
                   </div>
                   
-                  <NavLink 
-                    to="/" 
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg text-foreground hover:text-primary transition-colors py-2"
-                    activeClassName="text-primary font-semibold"
-                  >
-                    {t('nav.home')}
-                  </NavLink>
-                  <NavLink 
-                    to="/about" 
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg text-foreground hover:text-primary transition-colors py-2"
-                    activeClassName="text-primary font-semibold"
-                  >
-                    {t('nav.about')}
-                  </NavLink>
-                  <NavLink 
-                    to="/services" 
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg text-foreground hover:text-primary transition-colors py-2"
-                    activeClassName="text-primary font-semibold"
-                  >
-                    {t('nav.services')}
-                  </NavLink>
-                  <NavLink 
-                    to="/gallery" 
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg text-foreground hover:text-primary transition-colors py-2"
-                    activeClassName="text-primary font-semibold"
-                  >
-                    {t('nav.gallery')}
-                  </NavLink>
-                  <NavLink 
-                    to="/blog" 
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg text-foreground hover:text-primary transition-colors py-2"
-                    activeClassName="text-primary font-semibold"
-                  >
-                    {t('nav.blog')}
-                  </NavLink>
-                  <NavLink 
-                    to="/contact" 
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg text-foreground hover:text-primary transition-colors py-2"
-                    activeClassName="text-primary font-semibold"
-                  >
-                    {t('nav.contact')}
-                  </NavLink>
+                  <NavLink to="/" onClick={() => setIsOpen(false)} className="text-lg text-foreground hover:text-primary transition-colors py-2" activeClassName="text-primary font-semibold">{t('nav.home')}</NavLink>
+                  <NavLink to="/about" onClick={() => setIsOpen(false)} className="text-lg text-foreground hover:text-primary transition-colors py-2" activeClassName="text-primary font-semibold">{t('nav.about')}</NavLink>
+                  <NavLink to="/services" onClick={() => setIsOpen(false)} className="text-lg text-foreground hover:text-primary transition-colors py-2" activeClassName="text-primary font-semibold">{t('nav.services')}</NavLink>
+                  <NavLink to="/gallery" onClick={() => setIsOpen(false)} className="text-lg text-foreground hover:text-primary transition-colors py-2" activeClassName="text-primary font-semibold">{t('nav.gallery')}</NavLink>
+                  <NavLink to="/blog" onClick={() => setIsOpen(false)} className="text-lg text-foreground hover:text-primary transition-colors py-2" activeClassName="text-primary font-semibold">{t('nav.blog')}</NavLink>
+                  <NavLink to="/contact" onClick={() => setIsOpen(false)} className="text-lg text-foreground hover:text-primary transition-colors py-2" activeClassName="text-primary font-semibold">{t('nav.contact')}</NavLink>
                 </div>
               </SheetContent>
             </Sheet>

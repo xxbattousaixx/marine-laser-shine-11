@@ -1,12 +1,13 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { Ship, Cog, Droplet, Package, Paintbrush } from "lucide-react";
-import ParticleBackground from "@/components/ParticleBackground";
 import AnimatedSection from "@/components/AnimatedSection";
-import FloatingVideo from "@/components/FloatingVideo";
-import MarineServicesCarousel from "@/components/MarineServicesCarousel";
+
+const ParticleBackground = lazy(() => import("@/components/ParticleBackground"));
+const FloatingVideo = lazy(() => import("@/components/FloatingVideo"));
+const MarineServicesCarousel = lazy(() => import("@/components/MarineServicesCarousel"));
 
 const Services = () => {
   const { t, language } = useLanguage();
@@ -73,19 +74,24 @@ const Services = () => {
       </Helmet>
       
       <div className="min-h-screen flex flex-col relative">
-        <ParticleBackground variant="services" />
+        <Suspense fallback={null}>
+          <ParticleBackground variant="services" />
+        </Suspense>
         <Navigation />
         
         <main className="flex-grow pt-24 pb-12 relative z-10">
           <div className="container mx-auto px-4">
-            {/* 3D Carousel Section - Main Feature */}
-            <AnimatedSection animation="scale" delay={100}>
-              <MarineServicesCarousel />
-            </AnimatedSection>
+            <Suspense fallback={<div className="h-[600px]" />}>
+              <AnimatedSection animation="scale" delay={100}>
+                <MarineServicesCarousel />
+              </AnimatedSection>
+            </Suspense>
           </div>
         </main>
 
-        <FloatingVideo />
+        <Suspense fallback={null}>
+          <FloatingVideo />
+        </Suspense>
         <Footer />
       </div>
     </>
