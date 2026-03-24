@@ -13,7 +13,7 @@ const CookiePolicy = () => {
         <html lang={language} />
         <title>{t('cookies.title')} | Marine Laser Clean</title>
         <meta name="description" content={t('cookies.metaDescription')} />
-        <link rel="canonical" href="https://marinelaserclean.com/cookie-policy" />
+        <link rel="canonical" href="https://www.marinelaserclean.com/cookie-policy" />
       </Helmet>
       
       <div className="min-h-screen flex flex-col">

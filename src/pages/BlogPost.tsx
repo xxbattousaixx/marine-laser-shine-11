@@ -160,12 +160,12 @@ const BlogPost = () => {
       "name": "Marine Laser Clean",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://marinelaserclean.com/logo.png"
+        "url": "https://www.marinelaserclean.com/logo.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://marinelaserclean.com/blog/${post.slug}`
+      "@id": `https://www.marinelaserclean.com/blog/${post.slug}`
     }
   };
 
@@ -190,13 +190,13 @@ const BlogPost = () => {
         <title>{`${t(post.titleKey)} | Marine Laser Clean`}</title>
         <meta name="description" content={t(post.excerptKey)} />
         <meta name="keywords" content="laser cleaning, rust removal, surface preparation, industrial cleaning, ship hull cleaning, sandblasting alternative" />
-        <link rel="canonical" href={`https://marinelaserclean.com/blog/${post.slug}`} />
+        <link rel="canonical" href={`https://www.marinelaserclean.com/blog/${post.slug}`} />
         
         {/* Open Graph */}
         <meta property="og:title" content={t(post.titleKey)} />
         <meta property="og:description" content={t(post.excerptKey)} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://marinelaserclean.com/blog/${post.slug}`} />
+        <meta property="og:url" content={`https://www.marinelaserclean.com/blog/${post.slug}`} />
         <meta property="og:image" content={post.image} />
         <meta property="article:published_time" content={post.date} />
         

@@ -55,7 +55,7 @@ const Contact = () => {
     "@type": "ContactPage",
     "name": t('contact.title'),
     "description": t('seo.contact.description'),
-    "url": "https://marinelaserclean.com/contact",
+    "url": "https://www.marinelaserclean.com/contact",
     "mainEntity": {
       "@type": "LocalBusiness",
       "name": "Marine Laser Clean",
@@ -76,12 +76,12 @@ const Contact = () => {
         <html lang={language} />
         <title>{t('seo.contact.title')}</title>
         <meta name="description" content={t('seo.contact.description')} />
-        <link rel="canonical" href="https://marinelaserclean.com/contact" />
+        <link rel="canonical" href="https://www.marinelaserclean.com/contact" />
         
         <meta property="og:title" content={t('seo.contact.title')} />
         <meta property="og:description" content={t('seo.contact.description')} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://marinelaserclean.com/contact" />
+        <meta property="og:url" content="https://www.marinelaserclean.com/contact" />
         
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={t('seo.contact.title')} />

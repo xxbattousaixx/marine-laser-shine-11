@@ -130,13 +130,13 @@ const Blog = () => {
     "@type": "Blog",
     "name": t("blog.title"),
     "description": t("blog.metaDescription"),
-    "url": "https://marinelaserclean.com/blog",
+    "url": "https://www.marinelaserclean.com/blog",
     "publisher": {
       "@type": "Organization",
       "name": "Marine Laser Clean",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://marinelaserclean.com/logo.png"
+        "url": "https://www.marinelaserclean.com/logo.png"
       }
     },
     "blogPost": blogPosts.map(post => ({
@@ -145,7 +145,7 @@ const Blog = () => {
       "description": t(post.excerptKey),
       "datePublished": post.date,
       "image": post.image,
-      "url": `https://marinelaserclean.com/blog/${post.slug}`
+      "url": `https://www.marinelaserclean.com/blog/${post.slug}`
     }))
   };
 
@@ -156,13 +156,13 @@ const Blog = () => {
         <title>{t("blog.metaTitle")}</title>
         <meta name="description" content={t("blog.metaDescription")} />
         <meta name="keywords" content="laser cleaning, rust removal, surface preparation, industrial cleaning, ship hull cleaning, sandblasting alternative, eco-friendly cleaning, maritime maintenance" />
-        <link rel="canonical" href="https://marinelaserclean.com/blog" />
+        <link rel="canonical" href="https://www.marinelaserclean.com/blog" />
         
         {/* Open Graph */}
         <meta property="og:title" content={t("blog.metaTitle")} />
         <meta property="og:description" content={t("blog.metaDescription")} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://marinelaserclean.com/blog" />
+        <meta property="og:url" content="https://www.marinelaserclean.com/blog" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
