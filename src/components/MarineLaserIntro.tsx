@@ -250,9 +250,9 @@ const MarineLaserIntro = () => {
         }`}
       >
         <div className="text-center z-10">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
             MARINE LASER CLEAN
-          </h2>
+          </h1>
           <div className="text-lg md:text-xl text-cyan-400 mb-8 font-light tracking-wider">
             {t('home.hero.subtitle')}
           </div>
