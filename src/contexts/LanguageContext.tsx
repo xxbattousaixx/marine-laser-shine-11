@@ -688,16 +688,16 @@ const translations = {
     'footer.cookies': 'Cookie政策',
     
     // SEO Meta Tags
-    'seo.home.title': 'Marine Laser Clean | 委内瑞拉6000W工业激光清洁',
-    'seo.home.description': '专业工业激光清洁服务，配备6000W设备。除锈、焊接准备、海事清洁等。卡比马斯，苏利亚，委内瑞拉。',
-    'seo.about.title': '关于我们 | Marine Laser Clean - 激光清洁专家',
-    'seo.about.description': '了解我们的6000W激光清洁技术。专业B2B服务提供商，服务于海事、制造、能源和航空航天行业。',
-    'seo.services.title': '工业激光清洁服务 | Marine Laser Clean',
-    'seo.services.description': '海事、制造、能源和基础设施激光清洁服务。除锈、焊接准备、设备维护，不损坏基材。',
-    'seo.gallery.title': '作品展示 | Marine Laser Clean - 清洁前后对比',
-    'seo.gallery.description': '查看真实的工业激光清洁效果。船体、机械、管道和工业部件的清洁前后照片。',
-    'seo.contact.title': '联系我们 | Marine Laser Clean - 索取报价',
-    'seo.contact.description': '索取工业激光清洁服务报价。位于委内瑞拉苏利亚州卡比马斯。为您的项目提供个性化服务。',
+    'seo.home.title': 'Marine Laser Clean | 委内瑞拉6000W激光清洁',
+    'seo.home.description': '委内瑞拉专业6000W工业激光清洁服务。除锈、表面处理、海事清洁。卡比马斯，苏利亚。',
+    'seo.about.title': '关于我们 | Marine Laser Clean 激光清洁',
+    'seo.about.description': '6000W激光清洁技术。专业B2B服务，服务于海事、制造、能源和航空航天行业。',
+    'seo.services.title': '激光清洁服务 | Marine Laser Clean',
+    'seo.services.description': '海事、制造、能源激光清洁。除锈、焊接准备、设备维护，不损坏基材。',
+    'seo.gallery.title': '作品展示 | Marine Laser Clean 前后对比',
+    'seo.gallery.description': '真实工业激光清洁效果。船体、机械、管道和工业部件清洁前后照片。',
+    'seo.contact.title': '联系我们 | Marine Laser Clean 报价',
+    'seo.contact.description': '索取工业激光清洁服务报价。位于委内瑞拉苏利亚州卡比马斯。个性化服务。',
     
     // Blog
     'nav.blog': '博客',
