@@ -18,7 +18,7 @@ const Home = () => {
     "@type": "LocalBusiness",
     "name": "Marine Laser Clean",
     "description": t('seo.home.description'),
-    "url": "https://www.marinelaserclean.com",
+    "url": "https://marinelaserclean.com",
     "telephone": "+58-412-324-3681",
     "email": "lasercleanvz@proton.me",
     "address": {
@@ -102,12 +102,12 @@ const Home = () => {
         <title>{t('seo.home.title')}</title>
         <meta name="description" content={t('seo.home.description')} />
         <meta name="keywords" content="limpieza láser, laser cleaning, rust removal, remoción de óxido, industrial cleaning, limpieza industrial, ship hull cleaning, Venezuela, Cabimas, 6000W laser" />
-        <link rel="canonical" href="https://www.marinelaserclean.com/" />
+        <link rel="canonical" href="https://marinelaserclean.com/" />
         
         <meta property="og:title" content={t('seo.home.title')} />
         <meta property="og:description" content={t('seo.home.description')} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.marinelaserclean.com/" />
+        <meta property="og:url" content="https://marinelaserclean.com/" />
         <meta property="og:site_name" content="Marine Laser Clean" />
         <meta property="og:locale" content={language === 'es' ? 'es_VE' : language === 'zh' ? 'zh_CN' : 'en_US'} />
         

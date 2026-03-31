@@ -13,7 +13,7 @@ const PrivacyPolicy = () => {
         <html lang={language} />
         <title>{t('privacy.title')} | Marine Laser Clean</title>
         <meta name="description" content={t('privacy.metaDescription')} />
-        <link rel="canonical" href="https://www.marinelaserclean.com/privacy-policy" />
+        <link rel="canonical" href="https://marinelaserclean.com/privacy-policy" />
       </Helmet>
       
       <div className="min-h-screen flex flex-col">
