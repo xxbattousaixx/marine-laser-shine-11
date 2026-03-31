@@ -187,7 +187,7 @@ const BlogPost = () => {
     <>
       <Helmet>
         <html lang={language} />
-        <title>{`${t(post.titleKey)} | Marine Laser Clean`}</title>
+        <title>{t(post.titleKey)}</title>
         <meta name="description" content={t(post.excerptKey)} />
         <meta name="keywords" content="laser cleaning, rust removal, surface preparation, industrial cleaning, ship hull cleaning, sandblasting alternative" />
         <link rel="canonical" href={`https://marinelaserclean.com/blog/${post.slug}`} />
