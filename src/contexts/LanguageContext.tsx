@@ -419,16 +419,16 @@ const translations = {
     'footer.cookies': 'Cookie Policy',
     
     // SEO Meta Tags
-    'seo.home.title': 'Marine Laser Clean | Industrial 6000W Laser Cleaning in Venezuela',
-    'seo.home.description': 'Professional industrial laser cleaning services with 6000W equipment. Rust removal, weld preparation, maritime cleaning and more. Cabimas, Zulia, Venezuela.',
-    'seo.about.title': 'About Us | Marine Laser Clean - Laser Cleaning Experts',
-    'seo.about.description': 'Learn about our 6000W laser cleaning technology. Specialized B2B service providers for maritime, manufacturing, energy and aerospace industries.',
-    'seo.services.title': 'Industrial Laser Cleaning Services | Marine Laser Clean',
-    'seo.services.description': 'Laser cleaning services for maritime, manufacturing, energy and infrastructure. Rust removal, weld preparation, equipment maintenance without substrate damage.',
-    'seo.gallery.title': 'Work Gallery | Marine Laser Clean - Before and After',
-    'seo.gallery.description': 'See real industrial laser cleaning results. Before and after photos of ship hulls, machinery, pipes and industrial components.',
-    'seo.contact.title': 'Contact Us | Marine Laser Clean - Request Quote',
-    'seo.contact.description': 'Request a quote for industrial laser cleaning services. Located in Cabimas, Zulia, Venezuela. Personalized attention for your project.',
+    'seo.home.title': 'Marine Laser Clean | 6000W Laser Cleaning Venezuela',
+    'seo.home.description': 'Professional 6000W industrial laser cleaning in Venezuela. Rust removal, surface preparation, and maritime cleaning in Cabimas, Zulia.',
+    'seo.about.title': 'About Us | Marine Laser Clean Venezuela',
+    'seo.about.description': '6000W laser cleaning technology. Specialized B2B services for maritime, manufacturing, energy and aerospace industries.',
+    'seo.services.title': 'Laser Cleaning Services | Marine Laser Clean',
+    'seo.services.description': 'Laser cleaning for maritime, manufacturing and energy. Rust removal, weld preparation, equipment maintenance without substrate damage.',
+    'seo.gallery.title': 'Gallery | Marine Laser Clean - Before & After',
+    'seo.gallery.description': 'Real industrial laser cleaning results. Before and after photos of ship hulls, machinery, and industrial components.',
+    'seo.contact.title': 'Contact | Marine Laser Clean - Get a Quote',
+    'seo.contact.description': 'Request a quote for industrial laser cleaning services. Located in Cabimas, Zulia, Venezuela. Personalized service.',
     
     // Blog
     'nav.blog': 'Blog',
