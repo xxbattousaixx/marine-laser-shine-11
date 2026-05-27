@@ -572,7 +572,7 @@ const translations = {
     'home.power.title': '6000W工业功率',
     'home.power.desc': '用于重型工业应用和大型项目的高功率设备',
     'home.video.title': '6000W激光清洁',
-    'home.video.description': '体验工业级除锈，平均清洁速度为每小时20平方米。我们的6000W系统为船舶、重型机械和工业设备提供精密清洁——无化学品，表面安全。',
+    'home.video.description': '体验工业级除锈。我们的6000W系统为船舶、重型机械和工业设备提供精密清洁——无化学品，表面安全。',
     
     // About - Hero Section
     'about.hero.badge': '尖端技术',
