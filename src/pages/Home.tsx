@@ -9,6 +9,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 
 const MarineLaserIntro = lazy(() => import("@/components/MarineLaserIntro"));
 const VideoShowcase = lazy(() => import("@/components/VideoShowcase"));
+const FeaturesBackground = lazy(() => import("@/components/FeaturesBackground"));
 
 const Home = () => {
   const { t, language } = useLanguage();
@@ -136,8 +137,10 @@ const Home = () => {
       </Suspense>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 bg-gradient-to-b from-background to-background/95">
-        <div className="container mx-auto">
+      <section id="features" className="py-20 px-4 relative overflow-hidden bg-gradient-to-b from-background via-background/95 to-background">
+        <FeaturesBackground />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/60 via-background/30 to-background/80 pointer-events-none" />
+        <div className="container mx-auto relative">
           <AnimatedSection animation="fade-up">
             <h2 className="text-4xl font-bold text-center mb-12 text-foreground">
               {t('home.features.title')}
@@ -146,21 +149,24 @@ const Home = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {features.map((feature, index) => (
               <AnimatedSection key={index} animation="scale" delay={index * 100}>
-                <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 h-full">
-                  <CardContent className="pt-6 text-center">
+                <div className="neon-card group relative h-full p-[1px] transition-all duration-300 hover:-translate-y-1">
+                  <div className="relative h-full bg-card/80 backdrop-blur-md p-6 text-center overflow-hidden"
+                       style={{ clipPath: 'polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)' }}>
+                    <span className="absolute top-0 left-3 w-12 h-[1px] bg-primary shadow-[0_0_8px_hsl(var(--primary))]" />
+                    <span className="absolute bottom-0 right-3 w-12 h-[1px] bg-primary shadow-[0_0_8px_hsl(var(--primary))]" />
                     <div className="mb-4 flex justify-center">
-                      <div className="p-4 bg-primary/10 rounded-full transition-transform duration-300 group-hover:scale-110">
-                        <feature.icon className="h-8 w-8 text-primary" />
+                      <div className="p-4 bg-primary/10 border border-primary/40 rounded-none rotate-45 transition-transform duration-300 group-hover:rotate-[225deg] group-hover:scale-110 shadow-[0_0_20px_hsl(var(--primary)/0.3)]">
+                        <feature.icon className="h-8 w-8 text-primary -rotate-45 group-hover:-rotate-[225deg] transition-transform duration-300" />
                       </div>
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 text-foreground">
+                    <h3 className="text-xl font-semibold mb-2 text-foreground tracking-wide uppercase text-sm">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       {feature.description}
                     </p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </AnimatedSection>
             ))}
           </div>

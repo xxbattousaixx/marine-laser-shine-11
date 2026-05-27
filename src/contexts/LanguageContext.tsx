@@ -34,7 +34,7 @@ const translations = {
     'home.power.title': 'Potencia Industrial de 6000W',
     'home.power.desc': 'Equipo de alta potencia para aplicaciones industriales pesadas y proyectos de gran escala',
     'home.video.title': 'Limpieza Láser 6000W',
-    'home.video.description': 'Experimente la remoción de óxido de grado industrial con una tasa de limpieza promedio de 20m² por hora. Nuestro sistema de 6000W ofrece limpieza de precisión para embarcaciones marinas, maquinaria pesada y equipos industriales — sin químicos y seguro para superficies.',
+    'home.video.description': 'Experimente la remoción de óxido de grado industrial con nuestro sistema de 6000W, que ofrece limpieza de precisión para embarcaciones marinas, maquinaria pesada y equipos industriales — sin químicos y seguro para superficies.',
     
     // About - Hero Section
     'about.hero.badge': 'Tecnología de Vanguardia',
@@ -303,7 +303,7 @@ const translations = {
     'home.power.title': '6000W Industrial Power',
     'home.power.desc': 'High-power equipment for heavy-duty industrial applications and large-scale projects',
     'home.video.title': '6000W Laser Cleaning',
-    'home.video.description': 'Experience industrial-grade rust removal with an average cleaning rate of 20m² per hour. Our 6000W system delivers precision cleaning for marine vessels, heavy machinery, and industrial equipment — chemical-free and surface-safe.',
+    'home.video.description': 'Experience industrial-grade rust removal with our 6000W system, delivering precision cleaning for marine vessels, heavy machinery, and industrial equipment — chemical-free and surface-safe.',
     
     // About - Hero Section
     'about.hero.badge': 'Cutting-Edge Technology',
@@ -572,7 +572,7 @@ const translations = {
     'home.power.title': '6000W工业功率',
     'home.power.desc': '用于重型工业应用和大型项目的高功率设备',
     'home.video.title': '6000W激光清洁',
-    'home.video.description': '体验工业级除锈，平均清洁速度为每小时20平方米。我们的6000W系统为船舶、重型机械和工业设备提供精密清洁——无化学品，表面安全。',
+    'home.video.description': '体验工业级除锈。我们的6000W系统为船舶、重型机械和工业设备提供精密清洁——无化学品，表面安全。',
     
     // About - Hero Section
     'about.hero.badge': '尖端技术',

@@ -113,3 +113,22 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .neon-card {
+    background: linear-gradient(130deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)));
+    background-size: 300% 300%;
+    animation: neonBorderFlow 6s ease infinite;
+    box-shadow: 0 0 18px hsl(var(--primary) / 0.35), 0 0 40px hsl(var(--primary) / 0.15);
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    transition: box-shadow 0.3s ease;
+  }
+  .neon-card:hover {
+    box-shadow: 0 0 28px hsl(var(--primary) / 0.7), 0 0 60px hsl(var(--accent) / 0.35);
+  }
+}
+
+@keyframes neonBorderFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
