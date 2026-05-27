@@ -275,16 +275,61 @@ const BlogPost = () => {
               />
             </div>
 
+            {/* Explore related services */}
+            <section className="mt-12 grid md:grid-cols-3 gap-4">
+              <Link
+                to="/services"
+                className="block p-5 rounded-lg border border-border hover:border-primary transition-colors group"
+              >
+                <h3 className="font-semibold text-foreground group-hover:text-primary">
+                  Explore our laser cleaning services
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  6000W rust, paint and coating removal for marine and industrial assets.
+                </p>
+              </Link>
+              <Link
+                to="/gallery"
+                className="block p-5 rounded-lg border border-border hover:border-primary transition-colors group"
+              >
+                <h3 className="font-semibold text-foreground group-hover:text-primary">
+                  See real before &amp; after results
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Ship hulls, machinery, pipes and engine parts restored on-site.
+                </p>
+              </Link>
+              <Link
+                to="/about"
+                className="block p-5 rounded-lg border border-border hover:border-primary transition-colors group"
+              >
+                <h3 className="font-semibold text-foreground group-hover:text-primary">
+                  About Marine Laser Clean
+                </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Learn about our team, technology and operations in Cabimas, Zulia.
+                </p>
+              </Link>
+            </section>
+
             {/* CTA */}
             <aside className="mt-12 bg-primary/10 rounded-2xl p-8 text-center">
               <h2 className="text-2xl font-bold text-foreground mb-4">
                 {t("blog.cta.title")}
               </h2>
               <p className="text-muted-foreground mb-6">
-                {t("blog.cta.description")}
+                {t("blog.cta.description")}{" "}
+                <Link to="/services" className="text-primary underline underline-offset-4">
+                  See our services
+                </Link>{" "}
+                or{" "}
+                <Link to="/gallery" className="text-primary underline underline-offset-4">
+                  browse the gallery
+                </Link>
+                .
               </p>
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
               >
                 {t("blog.cta.button")}
@@ -294,12 +339,12 @@ const BlogPost = () => {
             {/* Related Posts */}
             <section className="mt-12">
               <h3 className="text-xl font-bold text-foreground mb-6">{t("blog.relatedPosts")}</h3>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
                 {blogPosts
                   .filter(p => p.slug !== post.slug)
-                  .slice(0, 2)
+                  .slice(0, 3)
                   .map(relatedPost => (
-                    <Link 
+                    <Link
                       key={relatedPost.id}
                       to={`/blog/${relatedPost.slug}`}
                       className="group block p-4 rounded-lg border border-border hover:border-primary transition-colors"
@@ -314,6 +359,7 @@ const BlogPost = () => {
                   ))}
               </div>
             </section>
+
           </article>
         </main>
 
