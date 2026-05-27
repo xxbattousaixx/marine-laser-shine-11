@@ -125,9 +125,19 @@ const translations = {
     
     // Gallery
     'gallery.title': 'Galería de Trabajos',
-    'gallery.subtitle': 'Vea la calidad de nuestro trabajo',
+    'gallery.subtitle': 'Arrastre el deslizador para comparar resultados antes y después',
     'gallery.before': 'Antes',
     'gallery.after': 'Después',
+    'gallery.filter.all': 'Todos',
+    'gallery.filter.ship': 'Embarcaciones',
+    'gallery.filter.machinery': 'Maquinaria',
+    'gallery.filter.parts': 'Partes Metálicas',
+    'gallery.filter.pipes': 'Tuberías Industriales',
+    'gallery.filter.engine': 'Motores',
+    'gallery.cta.title': '¿Listo para transformar sus superficies?',
+    'gallery.cta.desc': 'Solicite una cotización gratuita y descubra el poder de la limpieza láser de 6000W.',
+    'gallery.cta.button': 'Solicitar Cotización',
+    'gallery.hint': 'Arrastre cualquier imagen para revelar el antes y el después',
     
     // Contact
     'contact.title': 'Contáctenos',
@@ -394,9 +404,19 @@ const translations = {
     
     // Gallery
     'gallery.title': 'Work Gallery',
-    'gallery.subtitle': 'See the quality of our work',
+    'gallery.subtitle': 'Drag the slider to compare before and after results',
     'gallery.before': 'Before',
     'gallery.after': 'After',
+    'gallery.filter.all': 'All',
+    'gallery.filter.ship': 'Ship Hulls',
+    'gallery.filter.machinery': 'Machinery',
+    'gallery.filter.parts': 'Metal Parts',
+    'gallery.filter.pipes': 'Industrial Pipes',
+    'gallery.filter.engine': 'Engine Parts',
+    'gallery.cta.title': 'Ready to transform your surfaces?',
+    'gallery.cta.desc': 'Request a free quote and discover the power of 6000W laser cleaning.',
+    'gallery.cta.button': 'Request a Quote',
+    'gallery.hint': 'Drag any image to reveal the before and after',
     
     // Contact
     'contact.title': 'Contact Us',
@@ -663,9 +683,19 @@ const translations = {
     
     // Gallery
     'gallery.title': '作品展示',
-    'gallery.subtitle': '查看我们的工作质量',
+    'gallery.subtitle': '拖动滑块对比清洁前后效果',
     'gallery.before': '清洁前',
     'gallery.after': '清洁后',
+    'gallery.filter.all': '全部',
+    'gallery.filter.ship': '船体',
+    'gallery.filter.machinery': '机械',
+    'gallery.filter.parts': '金属部件',
+    'gallery.filter.pipes': '工业管道',
+    'gallery.filter.engine': '发动机部件',
+    'gallery.cta.title': '准备好改变您的表面了吗？',
+    'gallery.cta.desc': '申请免费报价，体验6000W激光清洁的力量。',
+    'gallery.cta.button': '申请报价',
+    'gallery.hint': '拖动任意图像即可显示前后对比',
     
     // Contact
     'contact.title': '联系我们',
