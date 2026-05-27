@@ -303,7 +303,7 @@ const translations = {
     'home.power.title': '6000W Industrial Power',
     'home.power.desc': 'High-power equipment for heavy-duty industrial applications and large-scale projects',
     'home.video.title': '6000W Laser Cleaning',
-    'home.video.description': 'Experience industrial-grade rust removal with an average cleaning rate of 20m² per hour. Our 6000W system delivers precision cleaning for marine vessels, heavy machinery, and industrial equipment — chemical-free and surface-safe.',
+    'home.video.description': 'Experience industrial-grade rust removal with our 6000W system, delivering precision cleaning for marine vessels, heavy machinery, and industrial equipment — chemical-free and surface-safe.',
     
     // About - Hero Section
     'about.hero.badge': 'Cutting-Edge Technology',
