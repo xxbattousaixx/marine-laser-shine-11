@@ -9,6 +9,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 
 const MarineLaserIntro = lazy(() => import("@/components/MarineLaserIntro"));
 const VideoShowcase = lazy(() => import("@/components/VideoShowcase"));
+const FeaturesBackground = lazy(() => import("@/components/FeaturesBackground"));
 
 const Home = () => {
   const { t, language } = useLanguage();
