@@ -34,7 +34,7 @@ const translations = {
     'home.power.title': 'Potencia Industrial de 6000W',
     'home.power.desc': 'Equipo de alta potencia para aplicaciones industriales pesadas y proyectos de gran escala',
     'home.video.title': 'Limpieza Láser 6000W',
-    'home.video.description': 'Experimente la remoción de óxido de grado industrial con una tasa de limpieza promedio de 20m² por hora. Nuestro sistema de 6000W ofrece limpieza de precisión para embarcaciones marinas, maquinaria pesada y equipos industriales — sin químicos y seguro para superficies.',
+    'home.video.description': 'Experimente la remoción de óxido de grado industrial con nuestro sistema de 6000W, que ofrece limpieza de precisión para embarcaciones marinas, maquinaria pesada y equipos industriales — sin químicos y seguro para superficies.',
     
     // About - Hero Section
     'about.hero.badge': 'Tecnología de Vanguardia',
