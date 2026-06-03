@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 const MarineLaserIntro = () => {
   const { t } = useLanguage();
   const mountRef = useRef<HTMLDivElement>(null);
-  const [loadingProgress, setLoadingProgress] = useState(0);
-  const [showContent, setShowContent] = useState(false);
   const animationRef = useRef<number | null>(null);
   const threeLoadedRef = useRef(false);
 
@@ -17,7 +16,6 @@ const MarineLaserIntro = () => {
 
     let disposed = false;
 
-    // Dynamically import Three.js to avoid blocking initial render
     import('three').then((THREE) => {
       if (disposed || !mountRef.current) return;
 
@@ -26,140 +24,145 @@ const MarineLaserIntro = () => {
       const height = container.clientHeight;
 
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x0a0a0a);
-      scene.fog = new THREE.Fog(0x0a0a0a, 10, 50);
+      scene.fog = new THREE.Fog(0x05070d, 8, 28);
 
-      const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-      camera.position.z = 5;
+      const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
+      camera.position.set(0, 0, 9);
 
-      const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance' });
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance',
+      });
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+      renderer.setClearColor(0x000000, 0);
       container.appendChild(renderer.domElement);
 
-      const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
-      scene.add(ambientLight);
-      const blueLight = new THREE.PointLight(0x00d4ff, 2, 100);
-      blueLight.position.set(0, 0, 5);
-      scene.add(blueLight);
-      const orangeLight = new THREE.PointLight(0xff6b35, 1.5, 100);
-      orangeLight.position.set(-5, 3, 0);
-      scene.add(orangeLight);
+      // Lights
+      scene.add(new THREE.AmbientLight(0x223344, 0.6));
+      const cyanLight = new THREE.PointLight(0x00d4ff, 3, 30);
+      cyanLight.position.set(-4, 2, 4);
+      scene.add(cyanLight);
+      const amberLight = new THREE.PointLight(0xff8a3d, 2, 30);
+      amberLight.position.set(5, -1, 3);
+      scene.add(amberLight);
 
-      const geometry = new THREE.PlaneGeometry(8, 8, 16, 16);
-      const material = new THREE.ShaderMaterial({
-        uniforms: {
-          time: { value: 0 },
-          progress: { value: 0 },
-          laserColor: { value: new THREE.Color(0x00d4ff) },
-          rustColor: { value: new THREE.Color(0xff6b35) },
-          cleanColor: { value: new THREE.Color(0x8a9ba8) }
-        },
-        vertexShader: `
-          varying vec2 vUv;
-          uniform float time;
-          void main() {
-            vUv = uv;
-            vec3 pos = position;
-            pos.z += sin(pos.x * 2.0 + time) * 0.1 + cos(pos.y * 2.0 + time * 0.7) * 0.1;
-            gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
-          }
-        `,
-        fragmentShader: `
-          uniform float time;
-          uniform float progress;
-          uniform vec3 laserColor;
-          uniform vec3 rustColor;
-          uniform vec3 cleanColor;
-          varying vec2 vUv;
-          float random(vec2 st) {
-            return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
-          }
-          void main() {
-            float rustPattern = random(floor(vUv * 20.0)) * 0.5 + 0.5;
-            float laserPos = progress * 2.0 - 1.0;
-            float laserWidth = 0.3;
-            float distToLaser = abs(vUv.x - laserPos);
-            float laserIntensity = smoothstep(laserWidth, 0.0, distToLaser);
-            float cleaned = step(vUv.x, laserPos + laserWidth);
-            vec3 surfaceColor = mix(rustColor * rustPattern, cleanColor, cleaned);
-            surfaceColor += laserColor * laserIntensity * 0.5;
-            float pulse = sin(time * 3.0) * 0.3 + 0.7;
-            surfaceColor += laserColor * laserIntensity * pulse * 0.3;
-            gl_FragColor = vec4(surfaceColor, 1.0);
-          }
-        `
+      // Central torus — represents a pipe/ring being laser-cleaned
+      const torusGeo = new THREE.TorusGeometry(2.1, 0.55, 32, 96);
+      const torusMat = new THREE.MeshStandardMaterial({
+        color: 0x2a3340,
+        metalness: 0.95,
+        roughness: 0.32,
+        emissive: 0x0a1a24,
+        emissiveIntensity: 0.4,
       });
+      const torus = new THREE.Mesh(torusGeo, torusMat);
+      torus.position.set(3.2, -0.4, -1);
+      torus.rotation.x = 0.6;
+      torus.rotation.y = 0.3;
+      scene.add(torus);
 
-      const plane = new THREE.Mesh(geometry, material);
-      plane.rotation.x = -0.3;
-      scene.add(plane);
+      // Inner glowing ring (laser pass effect)
+      const ringGeo = new THREE.TorusGeometry(2.1, 0.06, 16, 96);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: 0x00d4ff,
+        transparent: true,
+        opacity: 0.85,
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.position.copy(torus.position);
+      ring.rotation.copy(torus.rotation);
+      scene.add(ring);
 
-      // Reduced particle count for performance
-      const particlesCount = 200;
-      const particlesGeometry = new THREE.BufferGeometry();
-      const positions = new Float32Array(particlesCount * 3);
-      const velocities = new Float32Array(particlesCount * 3);
-
-      for (let i = 0; i < particlesCount * 3; i += 3) {
-        positions[i] = (Math.random() - 0.5) * 10;
-        positions[i + 1] = (Math.random() - 0.5) * 10;
-        positions[i + 2] = (Math.random() - 0.5) * 10;
-        velocities[i] = (Math.random() - 0.5) * 0.02;
-        velocities[i + 1] = Math.random() * 0.05;
-        velocities[i + 2] = (Math.random() - 0.5) * 0.02;
+      // Floating cube particles
+      const cubeCount = 60;
+      const cubes: THREE.Mesh[] = [];
+      const cubeGeo = new THREE.BoxGeometry(0.18, 0.18, 0.18);
+      for (let i = 0; i < cubeCount; i++) {
+        const isAccent = Math.random() > 0.55;
+        const mat = new THREE.MeshBasicMaterial({
+          color: isAccent ? 0xff8a3d : 0x4a5a6a,
+          transparent: true,
+          opacity: isAccent ? 0.85 : 0.35,
+        });
+        const cube = new THREE.Mesh(cubeGeo, mat);
+        cube.position.set(
+          (Math.random() - 0.5) * 18,
+          (Math.random() - 0.5) * 12,
+          (Math.random() - 0.5) * 10 - 2,
+        );
+        cube.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+        (cube as any).speed = 0.002 + Math.random() * 0.006;
+        (cube as any).rotSpeed = (Math.random() - 0.5) * 0.01;
+        (cube as any).drift = (Math.random() - 0.5) * 0.003;
+        scene.add(cube);
+        cubes.push(cube);
       }
 
-      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      const particlesMaterial = new THREE.PointsMaterial({
+      // Spark particles (laser dust)
+      const sparkCount = 180;
+      const sparkGeo = new THREE.BufferGeometry();
+      const sparkPos = new Float32Array(sparkCount * 3);
+      for (let i = 0; i < sparkCount * 3; i += 3) {
+        sparkPos[i] = (Math.random() - 0.5) * 18;
+        sparkPos[i + 1] = (Math.random() - 0.5) * 12;
+        sparkPos[i + 2] = (Math.random() - 0.5) * 8;
+      }
+      sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPos, 3));
+      const sparkMat = new THREE.PointsMaterial({
         color: 0x00d4ff,
         size: 0.05,
         transparent: true,
-        opacity: 0.8,
-        blending: THREE.AdditiveBlending
+        opacity: 0.6,
+        blending: THREE.AdditiveBlending,
       });
-      const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-      scene.add(particles);
+      const sparks = new THREE.Points(sparkGeo, sparkMat);
+      scene.add(sparks);
 
-      let progress = 0;
       const clock = new THREE.Clock();
+      let mouseX = 0;
+      let mouseY = 0;
+      const onMouseMove = (e: MouseEvent) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+      };
+      window.addEventListener('mousemove', onMouseMove);
 
       const animate = () => {
         if (disposed) return;
         animationRef.current = requestAnimationFrame(animate);
-        const elapsedTime = clock.getElapsedTime();
+        const t = clock.getElapsedTime();
 
-        if (progress < 1) {
-          progress += 0.005;
-          setLoadingProgress(Math.floor(progress * 100));
-          material.uniforms.progress.value = progress;
-        } else {
-          setShowContent(true);
+        torus.rotation.y = 0.3 + t * 0.15;
+        torus.rotation.x = 0.6 + Math.sin(t * 0.4) * 0.05;
+        ring.rotation.copy(torus.rotation);
+        ring.rotation.z = t * 1.2;
+        (ring.material as THREE.MeshBasicMaterial).opacity = 0.6 + Math.sin(t * 3) * 0.3;
+
+        cubes.forEach((c) => {
+          c.position.y += (c as any).speed;
+          c.position.x += (c as any).drift;
+          c.rotation.x += (c as any).rotSpeed;
+          c.rotation.y += (c as any).rotSpeed;
+          if (c.position.y > 6) c.position.y = -6;
+          if (c.position.x > 9) c.position.x = -9;
+          if (c.position.x < -9) c.position.x = 9;
+        });
+
+        const sp = sparkGeo.attributes.position.array as Float32Array;
+        for (let i = 1; i < sparkCount * 3; i += 3) {
+          sp[i] += 0.008;
+          if (sp[i] > 6) sp[i] = -6;
         }
+        sparkGeo.attributes.position.needsUpdate = true;
 
-        material.uniforms.time.value = elapsedTime;
-
-        const posArray = particlesGeometry.attributes.position.array as Float32Array;
-        for (let i = 0; i < particlesCount * 3; i += 3) {
-          posArray[i] += velocities[i];
-          posArray[i + 1] += velocities[i + 1];
-          posArray[i + 2] += velocities[i + 2];
-          if (posArray[i + 1] > 5) {
-            posArray[i] = (Math.random() - 0.5) * 8;
-            posArray[i + 1] = -3;
-            posArray[i + 2] = (Math.random() - 0.5) * 2;
-          }
-        }
-        particlesGeometry.attributes.position.needsUpdate = true;
-
-        plane.rotation.z = Math.sin(elapsedTime * 0.2) * 0.05;
-        camera.position.x = Math.sin(elapsedTime * 0.3) * 0.2;
-        camera.position.y = Math.cos(elapsedTime * 0.4) * 0.2;
+        camera.position.x += (mouseX * 0.6 - camera.position.x) * 0.04;
+        camera.position.y += (-mouseY * 0.4 - camera.position.y) * 0.04;
         camera.lookAt(0, 0, 0);
 
         renderer.render(scene, camera);
       };
-
       animate();
 
       const handleResize = () => {
@@ -172,23 +175,24 @@ const MarineLaserIntro = () => {
       };
       window.addEventListener('resize', handleResize);
 
-      // Store cleanup in the disposed flag
-      const originalDispose = () => {
+      (container as any).__threeCleanup = () => {
         disposed = true;
         window.removeEventListener('resize', handleResize);
+        window.removeEventListener('mousemove', onMouseMove);
         if (animationRef.current) cancelAnimationFrame(animationRef.current);
         if (container && renderer.domElement.parentNode === container) {
           container.removeChild(renderer.domElement);
         }
-        geometry.dispose();
-        material.dispose();
-        particlesGeometry.dispose();
-        particlesMaterial.dispose();
+        torusGeo.dispose();
+        torusMat.dispose();
+        ringGeo.dispose();
+        ringMat.dispose();
+        cubeGeo.dispose();
+        cubes.forEach((c) => (c.material as THREE.Material).dispose());
+        sparkGeo.dispose();
+        sparkMat.dispose();
         renderer.dispose();
       };
-
-      // Store for cleanup
-      (container as any).__threeCleanup = originalDispose;
     });
 
     return () => {
@@ -201,77 +205,76 @@ const MarineLaserIntro = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[80vh] overflow-hidden bg-black">
-      <div ref={mountRef} className="absolute inset-0" />
-      
-      <div 
-        className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-1000 ${
-          showContent ? 'opacity-0 pointer-events-none' : 'opacity-100'
-        }`}
-      >
-        <div className="text-center z-10">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
-            MARINE LASER CLEAN
-          </h1>
-          <div className="text-lg md:text-xl text-cyan-400 mb-8 font-light tracking-wider">
-            {t('home.hero.subtitle')}
-          </div>
-          <div className="w-64 h-1 bg-gray-800 rounded-full mx-auto overflow-hidden">
-            <div 
-              className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-300"
-              style={{ width: `${loadingProgress}%` }}
-            />
-          </div>
-          <div className="text-cyan-400 mt-4 text-sm tracking-widest">
-            {loadingProgress}% INITIALIZED
-          </div>
+    <div className="relative w-full min-h-[88vh] overflow-hidden bg-[#05070d]">
+      {/* Three.js scene */}
+      <div ref={mountRef} className="absolute inset-0" aria-hidden="true" />
+
+      {/* Radial vignette */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, transparent 0%, rgba(5,7,13,0.55) 70%, rgba(5,7,13,0.95) 100%)',
+        }}
+      />
+
+      {/* Content overlay */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-[88vh] px-6 text-center">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-5 py-2 mb-8 rounded-full border border-primary/40 bg-primary/10 backdrop-blur-md shadow-[0_0_30px_hsl(var(--primary)/0.25)] animate-fade-in">
+          <Sparkles className="h-4 w-4 text-primary" />
+          <span className="text-xs sm:text-sm font-medium tracking-wider text-primary uppercase">
+            {t('home.hero.badge')}
+          </span>
         </div>
-      </div>
 
-      <div 
-        className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-1000 ${
-          showContent ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <div className="text-center z-10 max-w-4xl px-6">
-          <div className="text-sm tracking-widest text-cyan-400 mb-4">
-            CABIMAS, ZULIA — VENEZUELA
-          </div>
-          
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">
-            {t('home.hero.title')}
-          </h2>
-          
-          <p className="text-lg md:text-xl text-gray-300 mb-8 font-light leading-relaxed">
-            {t('home.hero.subtitle')}
-          </p>
+        {/* Headline */}
+        <h1 className="max-w-5xl text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[1.05] tracking-tight text-white mb-6">
+          <span className="block">{t('home.hero.title')}</span>
+          <span
+            className="block mt-2 bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                'linear-gradient(135deg, #00d4ff 0%, #38bdf8 40%, #ff8a3d 100%)',
+            }}
+          >
+            {t('home.hero.titleAccent')}
+          </span>
+        </h1>
 
-          <div className="mb-10 text-gray-400 text-base">
-            <p className="mb-2">{t('home.features.eco.desc')}</p>
-            <p className="text-cyan-400 font-medium">{t('home.features.precision.desc')}</p>
-          </div>
+        {/* Subtitle */}
+        <p className="max-w-2xl text-base sm:text-lg md:text-xl text-gray-300/90 font-light leading-relaxed mb-10">
+          {t('home.hero.subtitle')}
+        </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link to="/services">
-              <Button size="lg" className="px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-black font-semibold tracking-wider">
-                {t('home.hero.cta2')}
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button size="lg" variant="outline" className="px-8 py-4 border-2 border-white hover:bg-white hover:text-black text-white font-semibold tracking-wider">
-                {t('home.hero.cta')}
-              </Button>
-            </Link>
-          </div>
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Link to="/contact">
+            <Button
+              size="lg"
+              className="group px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold tracking-wider rounded-full shadow-[0_0_40px_hsl(var(--primary)/0.5)] hover:shadow-[0_0_60px_hsl(var(--primary)/0.7)] transition-all"
+            >
+              {t('home.hero.cta')}
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
+          <Link to="/services">
+            <Button
+              size="lg"
+              variant="outline"
+              className="px-8 py-6 border-2 border-white/30 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/60 text-white font-semibold tracking-wider rounded-full transition-all"
+            >
+              {t('home.hero.cta2')}
+            </Button>
+          </Link>
         </div>
-      </div>
 
-      <div className={`absolute bottom-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center text-xs text-gray-500 tracking-widest transition-opacity duration-1000 ${
-        showContent ? 'opacity-100' : 'opacity-0'
-      }`}>
-        <div className="hidden sm:block">6000W LASER TECHNOLOGY</div>
-        <div>NAVAL & INDUSTRIAL</div>
-        <div className="hidden sm:block">ZERO ABRASION</div>
+        {/* Bottom meta strip */}
+        <div className="absolute bottom-6 left-0 right-0 px-6 flex justify-between items-center text-[10px] sm:text-xs text-gray-500 tracking-[0.3em] uppercase pointer-events-none">
+          <span className="hidden sm:block">6000W Laser</span>
+          <span>Cabimas · Zulia · VE</span>
+          <span className="hidden sm:block">Zero Abrasion</span>
+        </div>
       </div>
     </div>
   );
