@@ -299,7 +299,9 @@ const translations = {
     'nav.contact': 'Contact',
     
     // Home
-    'home.hero.title': 'Industrial Laser Cleaning',
+    'home.hero.badge': '6000W · Zero Abrasion · Eco-Friendly',
+    'home.hero.title': 'Restore Industrial Surfaces',
+    'home.hero.titleAccent': 'With Laser Precision',
     'home.hero.subtitle': '6000W laser machine for surface preparation, rust removal, and high-power industrial cleaning',
     'home.hero.cta': 'Request Quote',
     'home.hero.cta2': 'View Services',
