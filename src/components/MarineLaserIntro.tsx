@@ -188,7 +188,7 @@ const MarineLaserIntro = () => {
         ringGeo.dispose();
         ringMat.dispose();
         cubeGeo.dispose();
-        cubes.forEach((c) => (c.material as THREE.Material).dispose());
+        cubes.forEach((c) => (c.material as any).dispose());
         sparkGeo.dispose();
         sparkMat.dispose();
         renderer.dispose();
