@@ -18,7 +18,9 @@ const translations = {
     'nav.contact': 'Contacto',
     
     // Home
-    'home.hero.title': 'Limpieza Láser Industrial',
+    'home.hero.badge': '6000W · Cero Abrasión · Eco-Amigable',
+    'home.hero.title': 'Restauramos Superficies Industriales',
+    'home.hero.titleAccent': 'Con Precisión Láser',
     'home.hero.subtitle': 'Máquina láser de 6000W para preparación de superficies, remoción de óxido y limpieza industrial de alta potencia',
     'home.hero.cta': 'Solicitar Cotización',
     'home.hero.cta2': 'Ver Servicios',
