@@ -77,7 +77,7 @@ const MarineLaserIntro = () => {
 
       // Floating cube particles
       const cubeCount = 60;
-      const cubes: THREE.Mesh[] = [];
+      const cubes: any[] = [];
       const cubeGeo = new THREE.BoxGeometry(0.18, 0.18, 0.18);
       for (let i = 0; i < cubeCount; i++) {
         const isAccent = Math.random() > 0.55;
