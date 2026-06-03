@@ -580,7 +580,9 @@ const translations = {
     'nav.contact': '联系我们',
     
     // Home
-    'home.hero.title': '专业激光清洁',
+    'home.hero.badge': '6000W · 零磨损 · 环保',
+    'home.hero.title': '修复工业表面',
+    'home.hero.titleAccent': '激光精度',
     'home.hero.subtitle': '为委内瑞拉石油行业提供专业的激光喷砂和清洁服务',
     'home.hero.cta': '索取报价',
     'home.hero.cta2': '查看服务',
