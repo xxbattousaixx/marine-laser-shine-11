@@ -138,7 +138,7 @@ const MarineLaserIntro = () => {
         torus.rotation.x = 0.6 + Math.sin(t * 0.4) * 0.05;
         ring.rotation.copy(torus.rotation);
         ring.rotation.z = t * 1.2;
-        (ring.material as THREE.MeshBasicMaterial).opacity = 0.6 + Math.sin(t * 3) * 0.3;
+        (ring.material as any).opacity = 0.6 + Math.sin(t * 3) * 0.3;
 
         cubes.forEach((c) => {
           c.position.y += (c as any).speed;
