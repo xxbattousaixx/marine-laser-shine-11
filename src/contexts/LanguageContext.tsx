@@ -18,7 +18,9 @@ const translations = {
     'nav.contact': 'Contacto',
     
     // Home
-    'home.hero.title': 'Limpieza Láser Industrial',
+    'home.hero.badge': '6000W · Cero Abrasión · Eco-Amigable',
+    'home.hero.title': 'Restauramos Superficies Industriales',
+    'home.hero.titleAccent': 'Con Precisión Láser',
     'home.hero.subtitle': 'Máquina láser de 6000W para preparación de superficies, remoción de óxido y limpieza industrial de alta potencia',
     'home.hero.cta': 'Solicitar Cotización',
     'home.hero.cta2': 'Ver Servicios',
@@ -297,7 +299,9 @@ const translations = {
     'nav.contact': 'Contact',
     
     // Home
-    'home.hero.title': 'Industrial Laser Cleaning',
+    'home.hero.badge': '6000W · Zero Abrasion · Eco-Friendly',
+    'home.hero.title': 'Restore Industrial Surfaces',
+    'home.hero.titleAccent': 'With Laser Precision',
     'home.hero.subtitle': '6000W laser machine for surface preparation, rust removal, and high-power industrial cleaning',
     'home.hero.cta': 'Request Quote',
     'home.hero.cta2': 'View Services',
@@ -576,7 +580,9 @@ const translations = {
     'nav.contact': '联系我们',
     
     // Home
-    'home.hero.title': '专业激光清洁',
+    'home.hero.badge': '6000W · 零磨损 · 环保',
+    'home.hero.title': '修复工业表面',
+    'home.hero.titleAccent': '激光精度',
     'home.hero.subtitle': '为委内瑞拉石油行业提供专业的激光喷砂和清洁服务',
     'home.hero.cta': '索取报价',
     'home.hero.cta2': '查看服务',
